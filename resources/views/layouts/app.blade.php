@@ -100,20 +100,17 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
 
-    <!--CKEDITOR-->
-    <script type="text/javascript">
-        ClassicEditor.create(document.querySelector('#desc_sanpham')).then(editor => {
-            console.log(editor);
-        }).catch(error => {
-            console.error(error);
-        });
-    </script>
-
     <!--Datatable-->
     <script type="text/javascript">
         $(document).ready(function () {
             $('#tablesanpham').DataTable();
         });
+    </script>
+
+    <!--CKEDITOR-->
+    <script type="text/javascript">
+        ClassicEditor.create(document.querySelector('#desc_noidung'));
+        ClassicEditor.create(document.querySelector('#desc_cauhinh'));
     </script>
 
     <!--Change slug-->

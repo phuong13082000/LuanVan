@@ -56,7 +56,7 @@
 
                     <div class="mb-3">
                         <div class="form-group">
-                            {!! Form::label('Image', 'Hình ảnh', []) !!}
+                            {!! Form::label('Hinhanh', 'Hình ảnh', []) !!}
                             {!! Form::file('hinhanh', ['class'=>'form-control-file']) !!}
                             @if(isset($sanpham))
                                 <img width="150" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}">
@@ -128,8 +128,15 @@
 
                     <div class="mb-3">
                         <div class="form-group">
+                            {!! Form::label('cauhinh', 'Cấu hình', []) !!}
+                            {!! Form::textarea('cauhinh', isset($sanpham) ? $sanpham->cauhinh : '', ['class'=>'form-control', 'id'=>'desc_cauhinh']) !!}
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
                             {!! Form::label('noidung', 'Nội dung', []) !!}
-                            {!! Form::textarea('noidung', isset($sanpham) ? $sanpham->noidung : '', ['class'=>'form-control', 'id'=>'desc_sanpham']) !!}
+                            {!! Form::textarea('noidung', isset($sanpham) ? $sanpham->noidung : '', ['class'=>'form-control', 'id'=>'desc_noidung']) !!}
                         </div>
                     </div>
 

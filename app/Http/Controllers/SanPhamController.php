@@ -39,6 +39,7 @@ class SanPhamController extends Controller
         $sanpham->danhmuc_id = $data['danhmuc_id'];
         $sanpham->theloai_id = $data['theloai_id'];
         $sanpham->kichhoat = $data['kichhoat'];
+        $sanpham->cauhinh = $data['cauhinh'];
 
         $get_image = $request->file('hinhanh');
 
@@ -79,6 +80,7 @@ class SanPhamController extends Controller
         $data = $request->all();
 
         $sanpham = SanPham::find($id);
+
         $sanpham->name = $data['name'];
         $sanpham->slug = $data['slug'];
         $sanpham->gia = $data['gia'];
@@ -88,6 +90,7 @@ class SanPhamController extends Controller
         $sanpham->danhmuc_id = $data['danhmuc_id'];
         $sanpham->theloai_id = $data['theloai_id'];
         $sanpham->kichhoat = $data['kichhoat'];
+        $sanpham->cauhinh = $data['cauhinh'];
 
         $get_image = $request->file('hinhanh');
 
@@ -98,7 +101,7 @@ class SanPhamController extends Controller
                 $get_name_image = $get_image->getClientOriginalName();
                 $name_image = current(explode('.', $get_name_image));
                 $new_image = $name_image . rand(0, 9999) . '.' . $get_image->getClientOriginalExtension();
-                $get_image->move('uploads/movie/', $new_image);
+                $get_image->move('uploads/sanpham/', $new_image);
                 $sanpham->hinhanh = $new_image;
             }
         }

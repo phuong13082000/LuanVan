@@ -10,8 +10,6 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/jquery.js') }}" defer></script>
-    <script src="{{ asset('js/owlcarousel.js') }}" defer></script>
 
 </head>
 <body>
@@ -83,24 +81,20 @@
         <div class="mt-3">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                            type="button" role="tab" aria-controls="home" aria-selected="true">Sản Phẩm Mới Nhất
+                    <button class="nav-link active" id="sanphammoi-tab" data-bs-toggle="tab" data-bs-target="#sanphammoi"
+                            type="button" role="tab" aria-controls="sanphammoi" aria-selected="true">Sản Phẩm Mới Nhất
                     </button>
                 </li>
+
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                            type="button" role="tab" aria-controls="profile" aria-selected="false">Sản Phẩm Nổi Bật
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
-                            type="button" role="tab" aria-controls="contact" aria-selected="false">Sản Phẩm Khuyến Mãi
+                    <button class="nav-link" id="sanphamkhuyenmai-tab" data-bs-toggle="tab" data-bs-target="#sanphamkhuyenmai"
+                            type="button" role="tab" aria-controls="sanphamkhuyenmai" aria-selected="false">Sản Phẩm Khuyến Mãi
                     </button>
                 </li>
             </ul>
             <div class="mt-3">
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade show active" id="sanphammoi" role="tabpanel" aria-labelledby="sanphammoi-tab">
                         <div class="row">
 
                             @foreach($list_sanpham_moi as $sanpham_moi)
@@ -113,10 +107,13 @@
                                             <p class="card-text">
                                                 @if($sanpham_moi->giakhuyenmai)
                                                     <del>{{ number_format($sanpham_moi->gia, 0, '', ',')}} VND</del>
-                                                    <br><b>{{ number_format($sanpham_moi->giakhuyenmai, 0, '', ',')}} VND</b>
+                                                    <br><b>{{ number_format($sanpham_moi->giakhuyenmai, 0, '', ',')}}
+                                                        VND</b>
                                                 @else
                                                     {{ number_format($sanpham_moi->gia, 0, '', ',')}} VND
                                                 @endif
+                                                <small>{!! $sanpham_moi->cauhinh !!}</small>
+
                                             </p>
                                             <a href="#" class="btn btn-outline-primary"><i
                                                     class="fa fa-shopping-cart"></i></a>
@@ -128,117 +125,37 @@
 
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                    <div class="tab-pane fade" id="sanphamkhuyenmai" role="tabpanel" aria-labelledby="sanphamkhuyenmai-tab">
                         <div class="row">
 
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i></a>
-                                        <a href="#" class="btn btn-outline-primary">Detail</a>
+                            @foreach($list_sanpham_khuyenmai as $sanpham_khuyenmai)
+                                <div class="col-sm-3">
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="{{asset('uploads/sanpham/'.$sanpham_khuyenmai->hinhanh)}}"
+                                             class="card-img-top" alt="{{ $sanpham_khuyenmai->name }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $sanpham_khuyenmai->name }}</h5>
+                                            <p class="card-text">
+                                                @if($sanpham_khuyenmai->giakhuyenmai)
+                                                    <del>{{ number_format($sanpham_khuyenmai->gia, 0, '', ',')}}VND
+                                                    </del><br>
+                                                    <b>{{ number_format($sanpham_khuyenmai->giakhuyenmai, 0, '', ',')}}
+                                                        VND</b>
+                                                @else
+                                                    {{ number_format($sanpham_khuyenmai->gia, 0, '', ',')}} VND
+                                                @endif
+
+                                                <small>{!! $sanpham_moi->cauhinh !!}</small>
+
+                                            </p>
+                                            <a href="#" class="btn btn-outline-primary"><i
+                                                    class="fa fa-shopping-cart"></i></a>
+                                            <a href="#" class="btn btn-outline-primary">Detail</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i></a>
-                                        <a href="#" class="btn btn-outline-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i></a>
-                                        <a href="#" class="btn btn-outline-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i></a>
-                                        <a href="#" class="btn btn-outline-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                        <div class="row">
-
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i></a>
-                                        <a href="#" class="btn btn-outline-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i></a>
-                                        <a href="#" class="btn btn-outline-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i></a>
-                                        <a href="#" class="btn btn-outline-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i></a>
-                                        <a href="#" class="btn btn-outline-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
 
                         </div>
                     </div>
@@ -247,6 +164,11 @@
         </div>
     </div>
 
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
+            integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </div>
 
 </body>
