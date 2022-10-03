@@ -13,6 +13,10 @@
             <div class="mt-3">
                 <a class="nav-link" href="{{route('theloai.index')}}">Thể Loại</a>
             </div>
+
+            <div class="mt-3">
+                <a class="nav-link" href="{{route('sanpham.index')}}">Sản Phẩm</a>
+            </div>
             <hr>
         </div>
     </nav>

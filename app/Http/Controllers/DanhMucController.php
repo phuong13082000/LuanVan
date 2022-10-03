@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DanhMucRequest;
 use App\Models\DanhMuc;
 use Flasher\Prime\FlasherInterface;
-use Illuminate\Http\Request;
 
 class DanhMucController extends Controller
 {

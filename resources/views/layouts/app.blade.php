@@ -17,12 +17,6 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
 
-
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/jquery.js') }}" defer></script>
-    <script src="{{ asset('js/owlcarousel.js') }}" defer></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-
 </head>
 <body>
 <div id="app">
@@ -84,13 +78,41 @@
     </nav>
 
     <main class="py-4">
-        @yield('content')
+        @if(Auth::id())
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3">
+                        @include('admin.include.navbar')
+                    </div>
+                    @endif
+                    <div class="col-9">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
     </main>
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
+            integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+
+    <!--CKEDITOR-->
+    <script type="text/javascript">
+        ClassicEditor.create(document.querySelector('#desc_sanpham')).then(editor => {
+            console.log(editor);
+        }).catch(error => {
+            console.error(error);
+        });
+    </script>
 
     <!--Datatable-->
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#table').DataTable();
+            $('#tablesanpham').DataTable();
         });
     </script>
 

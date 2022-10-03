@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\DanhMuc;
+use App\Models\SanPham;
 use App\Models\TheLoai;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -22,6 +22,9 @@ class HomeController extends Controller
         $list_theloai = TheLoai::get();
         $count_theloai = count($list_theloai);
 
-        return view('home')->with(compact('count_danhmuc','count_theloai'));
+        $list_sanpham = SanPham::get();
+        $count_sanpham = count($list_sanpham);
+
+        return view('home')->with(compact('count_danhmuc','count_theloai', 'count_sanpham'));
     }
 }
