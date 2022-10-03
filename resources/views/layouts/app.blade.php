@@ -90,7 +90,7 @@
     <!--Datatable-->
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#danhmuc_table').DataTable();
+            $('#table').DataTable();
         });
     </script>
 

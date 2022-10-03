@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DanhMucRequest extends FormRequest
+class TheLoaiRequest extends FormRequest
 {
     public function authorize()
     {
@@ -15,13 +15,13 @@ class DanhMucRequest extends FormRequest
     {
         if (request()->isMethod('post')) {
             return [
-                'name' => 'required|unique:danhmucs|max:100',
+                'name' => 'required|unique:theloais|max:100',
                 'slug' => 'required|max:100',
                 'kichhoat' => 'required',
             ];
         } else {
             return [
-                'name' => 'required|unique:danhmucs|max:100',
+                'name' => 'required|unique:theloais|max:100',
             ];
         }
     }
