@@ -20,6 +20,8 @@ class HomeController extends Controller
         $count_theloai = TheLoai::count();
         $count_sanpham = SanPham::count();
 
-        return view('home')->with(compact('count_danhmuc','count_theloai', 'count_sanpham'));
+        $soluong_chitiet_sanpham = SanPham::where('soluong', '!=', '0')->get();
+
+        return view('home')->with(compact('count_danhmuc', 'count_theloai', 'count_sanpham', 'soluong_chitiet_sanpham'));
     }
 }

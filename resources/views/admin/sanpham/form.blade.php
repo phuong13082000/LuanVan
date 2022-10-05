@@ -15,9 +15,7 @@
     </style>
 
     @if(!isset($sanpham))
-        <nav
-            style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
-            aria-label="breadcrumb">
+        <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('sanpham.index') }}">Sản Phẩm</a></li>
@@ -25,9 +23,7 @@
             </ol>
         </nav>
     @else
-        <nav
-            style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
-            aria-label="breadcrumb">
+        <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('sanpham.index') }}">Sản Phẩm</a></li>
@@ -65,7 +61,7 @@
                     <div class="mb-3">
                         <div class="form-group">
                             {!! Form::label('Hinhanh', 'Hình ảnh', []) !!}
-                            {!! Form::file('hinhanh', ['class'=>'form-control-file']) !!}
+                            {!! Form::file('hinhanh', ['class'=>'form-control']) !!}
                             @if(isset($sanpham))
                                 <img width="150" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}">
                             @endif
@@ -94,16 +90,16 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        {!! Form::label('Danhmuc', 'Danh mục', []) !!}
-                                        {!! Form::select('danhmuc_id', $danhmuc, isset($sanpham) ? $sanpham->danhmuc_id : '', ['class'=>'form-control']) !!}
+                                    <div class="input-group">
+                                        {!! Form::label('Danhmuc', 'Danh mục', ['class'=>'input-group-text', 'for'=>'inputGroupSelect01']) !!}
+                                        {!! Form::select('danhmuc_id', $danhmuc, isset($sanpham) ? $sanpham->danhmuc_id : '', ['class'=>'form-select' ,'id'=>'inputGroupSelect01']) !!}
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        {!! Form::label('Theloai', 'Thể loại', []) !!}
-                                        {!! Form::select('theloai_id', $theloai, isset($sanpham) ? $sanpham->theloai_id : '', ['class'=>'form-control']) !!}
+                                    <div class="input-group">
+                                        {!! Form::label('Theloai', 'Thể loại', ['class'=>'input-group-text', 'for'=>'inputGroupSelect02']) !!}
+                                        {!! Form::select('theloai_id', $theloai, isset($sanpham) ? $sanpham->theloai_id : '', ['class'=>'form-select' ,'id'=>'inputGroupSelect02']) !!}
                                     </div>
                                 </div>
                             </div>

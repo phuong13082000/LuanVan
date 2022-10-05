@@ -13,6 +13,7 @@ Route::get('/', [IndexController::class, 'index'])->name('home');
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::resource('danhmuc', DanhMucController::class);
 Route::resource('theloai', TheLoaiController::class);
 Route::resource('sanpham', SanPhamController::class);

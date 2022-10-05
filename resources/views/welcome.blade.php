@@ -131,17 +131,23 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $sanpham_moi->name }}</h5>
                                             <p class="card-subtitle">
-                                                @if($sanpham_moi->giakhuyenmai)
-                                                    @php
-                                                        $gia = number_format($sanpham_moi->gia, 0, '', ',');
-                                                        $giaGiam = number_format($sanpham_moi->giakhuyenmai, 0, '', ',');
-                                                        $phanTramGiam = round(100 - ($sanpham_moi->giakhuyenmai / $sanpham_moi->gia * 100), PHP_ROUND_HALF_UP); //PHP_ROUND_HALF_UP làm tròn 1,5->2
-                                                    @endphp
-                                                    <del>{{ $gia }} VND</del><b style="color: red"> -{{ $phanTramGiam }}%</b>
-                                                    <br><b>{{ $giaGiam }} VND</b>
+                                                @php
+                                                    $gia = number_format($sanpham_moi->gia, 0, '', ',');
+                                                    $giaGiam = number_format($sanpham_moi->giakhuyenmai, 0, '', ',');
+                                                    $phanTramGiam = round(100 - ($sanpham_moi->giakhuyenmai / $sanpham_moi->gia * 100), PHP_ROUND_HALF_UP); //PHP_ROUND_HALF_UP làm tròn 1,5->2
+                                                @endphp
+
+                                                @if($sanpham_moi->soluong)
+                                                    @if($sanpham_moi->giakhuyenmai)
+                                                        <del>{{ $gia }} VND</del><b style="color: red"> -{{ $phanTramGiam }}%</b>
+                                                        <br><b>{{ $giaGiam }} VND</b>
+                                                    @else
+                                                        <b>{{ $gia }} VND</b>
+                                                    @endif
                                                 @else
-                                                    <b>{{ $gia }} VND</b>
+                                                    <b style="color: red">Hết Hàng</b>
                                                 @endif
+
                                             </p>
                                             <p class="card-text">{!! $sanpham_moi->cauhinh !!}</p>
 
@@ -165,17 +171,23 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $sanpham_khuyenmai->name }}</h5>
                                             <p class="card-subtitle">
-                                                @if($sanpham_khuyenmai->giakhuyenmai)
-                                                    @php
-                                                        $gia = number_format($sanpham_khuyenmai->gia, 0, '', ',');
-                                                        $giaKhuyenMai =  number_format($sanpham_khuyenmai->giakhuyenmai, 0, '', ',');
-                                                        $phanTramGiam = round(100 - ($sanpham_khuyenmai->giakhuyenmai / $sanpham_khuyenmai->gia * 100), PHP_ROUND_HALF_UP);
-                                                    @endphp
-                                                    <del>{{ $gia }} VND</del><b style="color: red"> -{{ $phanTramGiam }}%</b>
-                                                    <br><b>{{ $giaKhuyenMai }} VND</b>
+                                                @php
+                                                    $gia = number_format($sanpham_khuyenmai->gia, 0, '', ',');
+                                                    $giaKhuyenMai =  number_format($sanpham_khuyenmai->giakhuyenmai, 0, '', ',');
+                                                    $phanTramGiam = round(100 - ($sanpham_khuyenmai->giakhuyenmai / $sanpham_khuyenmai->gia * 100), PHP_ROUND_HALF_UP);
+                                                @endphp
+
+                                                @if($sanpham_khuyenmai->soluong)
+                                                    @if($sanpham_khuyenmai->giakhuyenmai)
+                                                        <del>{{ $gia }} VND</del><b style="color: red"> -{{ $phanTramGiam }}%</b>
+                                                        <br><b>{{ $giaKhuyenMai }} VND</b>
+                                                    @else
+                                                        <b>{{ $gia }} VND</b>
+                                                    @endif
                                                 @else
-                                                    <b>{{ $gia }} VND</b>
+                                                    <b style="color: red">Hết Hàng</b>
                                                 @endif
+
                                             </p>
                                             <p class="card-text">{!! $sanpham_khuyenmai->cauhinh !!}</p>
 

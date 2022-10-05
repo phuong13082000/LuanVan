@@ -70,6 +70,7 @@ class SanPhamController extends Controller
     {
         $danhmuc = DanhMuc::pluck('name', 'id');
         $theloai = TheLoai::pluck('name', 'id');
+
         $sanpham = SanPham::with('danhMuc', 'theLoai')->find($id);
 
         return view('admin.sanpham.form')->with(compact('sanpham', 'danhmuc', 'theloai'));

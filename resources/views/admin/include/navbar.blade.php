@@ -1,6 +1,5 @@
 <div class="container-fluid" >
     <nav class="nav flex-column border-end" style="background-color: #fff;">
-
         <div class="p-5">
             <h3>Trang Quản Trị</h3>
             <hr>

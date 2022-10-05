@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TheLoaiRequest;
+use App\Models\SanPham;
 use App\Models\TheLoai;
 use Flasher\Prime\FlasherInterface;
-use Illuminate\Http\Request;
 
 class TheLoaiController extends Controller
 {
@@ -60,9 +60,15 @@ class TheLoaiController extends Controller
 
     public function destroy($id, FlasherInterface $flasher)
     {
-        TheLoai::find($id)->delete();
+        $the_loai = TheLoai::find($id);
+        $check_theloai = SanPham::with('theLoai')->where('theloai_id', '=', $id)->first();
 
-        $flasher->addSuccess('Xóa thể loại thành công!');
+        if ($check_theloai) {
+            $flasher->addError('Thể loại có sản phẩm!');
+        } else {
+            $flasher->addSuccess('Xóa thể loại thành công!');
+            $the_loai->delete();
+        }
         return redirect()->route('theloai.index');
     }
 }
