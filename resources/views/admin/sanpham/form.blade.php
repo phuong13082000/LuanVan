@@ -55,6 +55,14 @@
                     @endif
 
                     <div class="mb-3">
+                        @if(!isset($sanpham))
+                            {!! Form::submit('Thêm Sản Phẩm', ['class'=>'btn btn-success']) !!}
+                        @else
+                            {!! Form::submit('Cập Nhật Sản Phẩm', ['class'=>'btn btn-success']) !!}
+                        @endif
+                    </div>
+
+                    <div class="mb-3">
                         <div class="form-group">
                             {!! Form::label('Hinhanh', 'Hình ảnh', []) !!}
                             {!! Form::file('hinhanh', ['class'=>'form-control-file']) !!}
@@ -65,101 +73,98 @@
                     </div>
 
                     <div class="mb-3">
-                        <div class="form-group">
-                            {!! Form::label('name', 'Tên sản phẩm', []) !!}
-                            {!! Form::text('name', isset($sanpham) ? $sanpham->name : '', ['class'=>'form-control', 'id'=>'slug', 'onkeyup'=>'ChangeToSlug()']) !!}
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <div class="form-group">
-                            {!! Form::label('slug', 'Đường dẫn', []) !!}
-                            {!! Form::text('slug', isset($sanpham) ? $sanpham->slug : '', ['class'=>'form-control', 'id'=>'convert_slug']) !!}
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    {!! Form::label('Danhmuc', 'Danh mục', []) !!}
-                                    {!! Form::select('danhmuc_id', $danhmuc, isset($sanpham) ? $sanpham->danhmuc_id : '', ['class'=>'form-control']) !!}
+                                    {!! Form::label('name', 'Tên sản phẩm', []) !!}
+                                    {!! Form::text('name', isset($sanpham) ? $sanpham->name : '', ['class'=>'form-control', 'id'=>'slug', 'onkeyup'=>'ChangeToSlug()']) !!}
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
-                                <div class="form-group">
-                                    {!! Form::label('Theloai', 'Thể loại', []) !!}
-                                    {!! Form::select('theloai_id', $theloai, isset($sanpham) ? $sanpham->theloai_id : '', ['class'=>'form-control']) !!}
+                                <div class="mb-3">
+                                    <div class="form-group">
+                                        {!! Form::label('slug', 'Đường dẫn', []) !!}
+                                        {!! Form::text('slug', isset($sanpham) ? $sanpham->slug : '', ['class'=>'form-control', 'id'=>'convert_slug']) !!}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    {!! Form::label('Gia', 'Giá', []) !!}
-                                    {!! Form::number('gia', isset($sanpham) ? $sanpham->gia : '', ['class'=>'form-control']) !!}
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        {!! Form::label('Danhmuc', 'Danh mục', []) !!}
+                                        {!! Form::select('danhmuc_id', $danhmuc, isset($sanpham) ? $sanpham->danhmuc_id : '', ['class'=>'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        {!! Form::label('Theloai', 'Thể loại', []) !!}
+                                        {!! Form::select('theloai_id', $theloai, isset($sanpham) ? $sanpham->theloai_id : '', ['class'=>'form-control']) !!}
+                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    {!! Form::label('Giakhuyenmai', 'Giá khuyến mãi', []) !!}
-                                    {!! Form::number('giakhuyenmai', isset($sanpham) ? $sanpham->giakhuyenmai : '', ['class'=>'form-control']) !!}
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        {!! Form::label('Gia', 'Giá', []) !!}
+                                        {!! Form::number('gia', isset($sanpham) ? $sanpham->gia : '', ['class'=>'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        {!! Form::label('Giakhuyenmai', 'Giá khuyến mãi', []) !!}
+                                        {!! Form::number('giakhuyenmai', isset($sanpham) ? $sanpham->giakhuyenmai : '', ['class'=>'form-control']) !!}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    {!! Form::label('Soluong', 'Số lượng', []) !!}
-                                    {!! Form::number('soluong', isset($sanpham) ? $sanpham->soluong : '', ['class'=>'form-control']) !!}
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        {!! Form::label('Soluong', 'Số lượng', []) !!}
+                                        {!! Form::number('soluong', isset($sanpham) ? $sanpham->soluong : '', ['class'=>'form-control']) !!}
+                                    </div>
                                 </div>
+
                             </div>
-
                         </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <div class="form-group">
-                            {!! Form::label('cauhinh', 'Cấu hình', []) !!}
-                            {!! Form::textarea('cauhinh', isset($sanpham) ? $sanpham->cauhinh : '', ['class'=>'form-control', 'id'=>'desc_cauhinh']) !!}
+                        <div class="mb-3">
+                            <div class="form-group">
+                                {!! Form::label('cauhinh', 'Cấu hình', []) !!}
+                                {!! Form::textarea('cauhinh', isset($sanpham) ? $sanpham->cauhinh : '', ['class'=>'form-control', 'id'=>'desc_cauhinh']) !!}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <div class="form-group">
-                            {!! Form::label('noidung', 'Nội dung', []) !!}
-                            {!! Form::textarea('noidung', isset($sanpham) ? $sanpham->noidung : '', ['class'=>'form-control', 'id'=>'desc_noidung']) !!}
+                        <div class="mb-3">
+                            <div class="form-group">
+                                {!! Form::label('noidung', 'Nội dung', []) !!}
+                                {!! Form::textarea('noidung', isset($sanpham) ? $sanpham->noidung : '', ['class'=>'form-control', 'id'=>'desc_noidung']) !!}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <div class="form-group">
-                            {!! Form::label('kichhoat', 'Trạng thái', []) !!}
-                            {!! Form::select('kichhoat', ['0'=>'Hiển thị', '1'=>'Không hiển thị'], isset($sanpham) ? $sanpham->kichhoat : '', ['class'=>'form-control']) !!}
+                        <div class="mb-3">
+                            <div class="form-group">
+                                {!! Form::label('kichhoat', 'Trạng thái', []) !!}
+                                {!! Form::select('kichhoat', ['0'=>'Hiển thị', '1'=>'Không hiển thị'], isset($sanpham) ? $sanpham->kichhoat : '', ['class'=>'form-control']) !!}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3">
-                        @if(!isset($sanpham))
-                            {!! Form::submit('Thêm Sản Phẩm', ['class'=>'btn btn-success']) !!}
-                        @else
-                            {!! Form::submit('Cập Nhật Sản Phẩm', ['class'=>'btn btn-success']) !!}
-                        @endif
+                        {!! Form::close() !!}
                     </div>
-
-                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
-    </div>
 
 @endsection
 
