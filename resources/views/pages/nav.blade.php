@@ -16,7 +16,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Danh Mục</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach($list_danhmuc as $danhmuc)
-                                <li><a class="dropdown-item" href="#">{{ $danhmuc->name }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('category', $danhmuc->slug) }}">{{ $danhmuc->name }}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -25,7 +25,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thể Loại</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach($list_theloai as $theloai)
-                                <li><a class="dropdown-item" href="#">{{ $theloai->name }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('genre', $theloai->slug) }}">{{ $theloai->name }}</a></li>
                             @endforeach
                         </ul>
                     </li>

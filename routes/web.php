@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/dtdd/detail/{slug}', [IndexController::class, 'detail'])->name('detail');
+Route::get('/danh-muc/{slug}', [IndexController::class, 'danhmuc'])->name('category');
+Route::get('/the-loai/{slug}', [IndexController::class, 'theloai'])->name('genre');
 
 Auth::routes();
 

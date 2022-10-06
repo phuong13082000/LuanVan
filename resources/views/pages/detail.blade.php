@@ -25,7 +25,7 @@
                         @if($sanpham->giakhuyenmai)
                             Giá: <br> <b style="color: red">{{ $giaKhuyenMai }} VND</b><del>&nbsp;{{ $gia }} VND</del><b style="color: red"> -{{ $phanTramGiam }}%</b><br>
                         @else
-                            <b>Giá: {{ $gia }} VND</b><br>
+                            <b>Giá: <br> {{ $gia }} VND</b><br>
                         @endif
                     @else
                         <b style="color: red">Hết Hàng</b><br>

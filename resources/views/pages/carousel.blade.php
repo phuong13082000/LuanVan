@@ -7,7 +7,7 @@
                 <div class="item">
                     <div class="card text-center">
                         <div class="card-body">
-                            <b>{{ $danhmuc->name }}</b>
+                            <a href="{{ route('category', $danhmuc->slug) }}"><b>{{ $danhmuc->name }}</b></a>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                 <div class="item">
                     <div class="card text-center">
                         <div class="card-body">
-                            <b>{{ $theloai->name }}</b>
+                            <a href="{{ route('genre', $theloai->slug) }}"><b>{{ $theloai->name }}</b></a>
                         </div>
                     </div>
                 </div>
