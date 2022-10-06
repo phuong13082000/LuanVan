@@ -24,6 +24,19 @@ class IndexController extends Controller
             ->take(4)
             ->get();
 
-        return view('welcome')->with(compact('list_danhmuc', 'list_theloai', 'list_sanpham_moi', 'list_sanpham_khuyenmai'));
+        return view('pages.index')->with(compact('list_danhmuc', 'list_theloai', 'list_sanpham_moi', 'list_sanpham_khuyenmai'));
+    }
+
+    public function detail($slug)
+    {
+        $list_danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
+        $list_theloai = TheLoai::orderBy('id', 'DESC')->get();
+
+        $ten_sanpham = SanPham::select('name')->where('slug', '=', $slug)->first();
+        $chitiet_sanpham = SanPham::with('danhMuc', 'theLoai')
+            ->where('slug', '=', $slug)
+            ->get();
+
+        return view('pages.detail')->with(compact('list_danhmuc', 'list_theloai', 'ten_sanpham', 'chitiet_sanpham'));
     }
 }

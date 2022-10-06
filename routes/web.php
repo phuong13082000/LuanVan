@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::get('/dtdd/detail/{slug}', [IndexController::class, 'detail'])->name('detail');
 
 Auth::routes();
 

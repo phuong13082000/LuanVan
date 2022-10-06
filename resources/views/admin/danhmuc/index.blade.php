@@ -45,15 +45,12 @@
                                     </td>
 
                                     <td>
-                                        <a href="{{route('danhmuc.edit',[$danhmuc->id])}}" class="btn btn-primary"><i
-                                                class="fa fa-pencil-square-o"></i> Edit</a>
+                                        <a href="{{route('danhmuc.edit',[$danhmuc->id])}}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a>
 
                                         <form action="{{route('danhmuc.destroy',[$danhmuc->id])}}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button onclick="return confirm('Bạn có muốn xóa danh mục này?');"
-                                                    class="btn btn-danger"><i class="fa fa-trash"></i> Xóa
-                                            </button>
+                                            <button onclick="return confirm('Bạn có muốn xóa danh mục này?');" class="btn btn-danger"><i class="fa fa-trash"></i> Xóa</button>
                                         </form>
                                     </td>
 

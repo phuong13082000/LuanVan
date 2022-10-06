@@ -1,19 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        .ck-editor__editable[role="textbox"] {
-            /* editing area */
-            min-height: 200px;
-        }
-
-        .ck-content .image {
-            /* block images */
-            max-width: 100%;
-            margin: 20px auto;
-        }
-    </style>
-
     @if(!isset($sanpham))
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -63,7 +50,7 @@
                             {!! Form::label('Hinhanh', 'Hình ảnh', []) !!}
                             {!! Form::file('hinhanh', ['class'=>'form-control']) !!}
                             @if(isset($sanpham))
-                                <img width="150" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}">
+                                <img width="150" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}" alt="{{$sanpham->name}}">
                             @endif
                         </div>
                     </div>
