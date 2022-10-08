@@ -47,8 +47,11 @@
                                     <td>{{ number_format($sanpham->gia, 0, '', ',')}} VND</td>
                                     <td>{{ number_format($sanpham->giakhuyenmai, 0, '', ',')}} VND</td>
                                     <td>{{$sanpham->soluong ?  : 'Hết hàng' }}</td>
-                                    <td>{{$sanpham->danhMuc->name}}</td>
-                                    <td>{{$sanpham->theLoai->name}}</td>
+                                    <td><span class="badge bg-primary">{{$sanpham->danhMuc->name}}</span</td>
+                                    <td>
+                                        @foreach ($sanpham->ntheLoai as $theloai )
+                                            <span class="badge bg-dark">{{$theloai->name}}</span><br>
+                                        @endforeach
                                     <td>
                                         @if ($sanpham->kichhoat==0)
                                             <span class="text text-success"><i class="fa fa-thumbs-up"></i></span>

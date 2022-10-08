@@ -23,7 +23,6 @@ class SanPham extends Model
         //'noidungkhuyenmai',
         'cauhinh',
         'danhmuc_id',
-        'theloai_id',
     ];
     protected $primaryKey = 'id';
     protected $table = 'sanphams';
@@ -34,10 +33,10 @@ class SanPham extends Model
         return $this->belongsTo(DanhMuc::class, 'danhmuc_id');
     }
 
-    //nsanpham - 1theloai
-    public function theLoai()
+    //nsanpham - ntheloai
+    public function ntheLoai()
     {
-        return $this->belongsTo(TheLoai::class, 'theloai_id');
+        return $this->belongsToMany(TheLoai::class,'sanpham_theloai','sanpham_id','theloai_id');
     }
 }
 

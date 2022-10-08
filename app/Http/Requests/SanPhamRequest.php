@@ -23,9 +23,10 @@ class SanPhamRequest extends FormRequest
                 'soluong' => 'required',
                 'noidung' => 'required',
                 'danhmuc_id' => 'required',
-                'theloai_id' => 'required',
                 'kichhoat' => 'required',
                 'cauhinh' => 'required',
+                'theloai' => 'required',
+
             ];
         } else {
             return [

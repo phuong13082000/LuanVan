@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SanPhamRequest;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
+use App\Models\Sanpham_Theloai;
 use App\Models\TheLoai;
 use Flasher\Prime\FlasherInterface;
 
@@ -12,7 +13,7 @@ class SanPhamController extends Controller
 {
     public function index()
     {
-        $list_sanpham = SanPham::with('danhMuc', 'theLoai')->orderBy('id', 'DESC')->get();
+        $list_sanpham = SanPham::with('danhMuc', 'ntheLoai')->orderBy('id', 'DESC')->get();
 
         return view('admin.sanpham.index', compact('list_sanpham'));
     }
@@ -22,7 +23,9 @@ class SanPhamController extends Controller
         $danhmuc = DanhMuc::pluck('name', 'id');
         $theloai = TheLoai::pluck('name', 'id');
 
-        return view('admin.sanpham.form')->with(compact('danhmuc','theloai'));
+        $list_theloai = TheLoai::all();
+
+        return view('admin.sanpham.form')->with(compact('danhmuc', 'theloai', 'list_theloai'));
     }
 
     public function store(SanPhamRequest $request, FlasherInterface $flasher)
@@ -37,7 +40,6 @@ class SanPhamController extends Controller
         $sanpham->soluong = $data['soluong'];
         $sanpham->noidung = $data['noidung'];
         $sanpham->danhmuc_id = $data['danhmuc_id'];
-        $sanpham->theloai_id = $data['theloai_id'];
         $sanpham->kichhoat = $data['kichhoat'];
         $sanpham->cauhinh = $data['cauhinh'];
 
@@ -53,6 +55,8 @@ class SanPhamController extends Controller
 
         $sanpham->save();
 
+        $sanpham->ntheLoai()->attach($data['theloai']);
+
         $flasher->addSuccess('Thêm sản phẩm ' . $sanpham->name . ' thành công!');
         return redirect()->route('sanpham.index');
     }
@@ -61,7 +65,8 @@ class SanPhamController extends Controller
     {
         $danhmuc = DanhMuc::pluck('name', 'id');
         $theloai = TheLoai::pluck('name', 'id');
-        $sanpham = SanPham::with('danhMuc', 'theLoai')->find($id);
+
+        $sanpham = SanPham::with('danhMuc', 'ntheLoai')->find($id);
 
         return view('admin.sanpham.show')->with(compact('sanpham', 'danhmuc', 'theloai'));
     }
@@ -71,9 +76,14 @@ class SanPhamController extends Controller
         $danhmuc = DanhMuc::pluck('name', 'id');
         $theloai = TheLoai::pluck('name', 'id');
 
-        $sanpham = SanPham::with('danhMuc', 'theLoai')->find($id);
+        $list_theloai = TheLoai::all();
 
-        return view('admin.sanpham.form')->with(compact('sanpham', 'danhmuc', 'theloai'));
+        $sanpham = SanPham::find($id);
+        $sanpham_theloai = $sanpham->ntheLoai;
+
+        $sanpham = SanPham::with('danhMuc', 'ntheLoai')->find($id);
+
+        return view('admin.sanpham.form')->with(compact('sanpham', 'danhmuc', 'theloai', 'list_theloai', 'sanpham_theloai'));
     }
 
     public function update(SanPhamRequest $request, $id, FlasherInterface $flasher)
@@ -89,7 +99,6 @@ class SanPhamController extends Controller
         $sanpham->soluong = $data['soluong'];
         $sanpham->noidung = $data['noidung'];
         $sanpham->danhmuc_id = $data['danhmuc_id'];
-        $sanpham->theloai_id = $data['theloai_id'];
         $sanpham->kichhoat = $data['kichhoat'];
         $sanpham->cauhinh = $data['cauhinh'];
 
@@ -109,6 +118,8 @@ class SanPhamController extends Controller
 
         $sanpham->save();
 
+        $sanpham->ntheLoai()->sync($data['theloai']);
+
         $flasher->addSuccess('Cập nhật sản phẩm ' . $sanpham->name . ' thành công!');
         return redirect()->route('sanpham.index');
     }
@@ -117,10 +128,12 @@ class SanPhamController extends Controller
     {
         $sanpham = SanPham::find($id);
 
-        if (file_exists('uploads/sanpham/' . $sanpham->image)) {
-            unlink('uploads/sanpham/' . $sanpham->image);
+        if (file_exists('uploads/sanpham/' . $sanpham->hinhanh)) {
+            unlink('uploads/sanpham/' . $sanpham->hinhanh);
         }
         $sanpham->delete();
+
+        $sanpham->ntheLoai()->where('sanpham_id', $id)->detach();
 
         $flasher->addSuccess('Xóa sản phẩm thành công!');
         return redirect()->route('sanpham.index');

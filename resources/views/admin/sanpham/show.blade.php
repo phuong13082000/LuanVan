@@ -26,7 +26,7 @@
                     <div class="mb-3">Giá khuyến mãi: {{ number_format($sanpham->giakhuyenmai, 0, '', ',')}} VND</div>
                     <div class="mb-3">Số lượng: {{$sanpham->soluong}}</div>
                     <div class="mb-3">Danh mục: {{$sanpham->danhMuc->name}}</div>
-                    <div class="mb-3">Thể loại: {{$sanpham->theLoai->name}}</div>
+                    <div class="mb-3">Thể loại: </div>
                     <div class="mb-3">Cấu hình: {!! $sanpham->cauhinh !!}</div>
                     <div class="mb-3">Nội dung: {!! $sanpham->noidung !!}</div>
 

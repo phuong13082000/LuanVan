@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TheLoaiRequest;
 use App\Models\SanPham;
+use App\Models\Sanpham_Theloai;
 use App\Models\TheLoai;
 use Flasher\Prime\FlasherInterface;
 
@@ -61,7 +62,14 @@ class TheLoaiController extends Controller
     public function destroy($id, FlasherInterface $flasher)
     {
         $the_loai = TheLoai::find($id);
-        $check_theloai = SanPham::with('theLoai')->where('theloai_id', '=', $id)->first();
+
+        $id_sanpham_theloai = Sanpham_Theloai::where('theloai_id', $id)->get(); //lấy theloai_id từ $id trong bảng Sanpham_Theloai
+        $ntheLoai = [];
+        foreach ($id_sanpham_theloai as $sp_tl) {
+            $ntheLoai[] = $sp_tl->sanpham_id;
+        }   //đưa thể loại lấy được từ $sanpham_theloai vào chuổi $ntheLoai
+
+        $check_theloai = SanPham::whereIn('id', $ntheLoai)->first();
 
         if ($check_theloai) {
             $flasher->addError('Thể loại có sản phẩm!');

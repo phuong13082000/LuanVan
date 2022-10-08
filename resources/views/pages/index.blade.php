@@ -8,12 +8,18 @@
     <div class="mt-3">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="sanphammoi-tab" data-bs-toggle="tab" data-bs-target="#sanphammoi" type="button" role="tab" aria-controls="sanphammoi" aria-selected="true">Sản Phẩm Mới Nhất
+                <button class="nav-link active" id="sanphammoi-tab" data-bs-toggle="tab" data-bs-target="#sanphammoi" type="button" role="tab" aria-controls="sanphammoi" aria-selected="true">
+                    <b>
+                        Sản Phẩm Mới Nhất
+                    </b>
                 </button>
             </li>
 
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="sanphamkhuyenmai-tab" data-bs-toggle="tab" data-bs-target="#sanphamkhuyenmai" type="button" role="tab" aria-controls="sanphamkhuyenmai" aria-selected="false">Sản Phẩm Khuyến Mãi
+                <button class="nav-link" id="sanphamkhuyenmai-tab" data-bs-toggle="tab" data-bs-target="#sanphamkhuyenmai" type="button" role="tab" aria-controls="sanphamkhuyenmai" aria-selected="false">
+                    <b>
+                        Sản Phẩm Khuyến Mãi
+                    </b>
                 </button>
             </li>
         </ul>

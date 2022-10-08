@@ -50,7 +50,8 @@
                             {!! Form::label('Hinhanh', 'Hình ảnh', []) !!}
                             {!! Form::file('hinhanh', ['class'=>'form-control']) !!}
                             @if(isset($sanpham))
-                                <img width="150" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}" alt="{{$sanpham->name}}">
+                                <img width="150" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}"
+                                     alt="{{$sanpham->name}}">
                             @endif
                         </div>
                     </div>
@@ -84,9 +85,16 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <div class="input-group">
-                                        {!! Form::label('Theloai', 'Thể loại', ['class'=>'input-group-text', 'for'=>'inputGroupSelect02']) !!}
-                                        {!! Form::select('theloai_id', $theloai, isset($sanpham) ? $sanpham->theloai_id : '', ['class'=>'form-select' ,'id'=>'inputGroupSelect02']) !!}
+                                    <div class="form-group">
+                                        {!! Form::label('Theloai', 'Thể loại', []) !!}
+                                        @foreach ($list_theloai as $ntheloai )
+                                            @if (isset($sanpham))
+                                                <br>{!! Form::checkbox('theloai[]', $ntheloai->id, isset($sanpham_theloai) && $sanpham_theloai->contains($ntheloai->id) ? true : false) !!}
+                                            @else
+                                                <br>{!! Form::checkbox('theloai[]', $ntheloai->id, '') !!}
+                                            @endif
+                                            {!! Form::label('theloai', $ntheloai->name) !!}
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

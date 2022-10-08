@@ -12,8 +12,8 @@ class TheLoai extends Model
     public $timestamps = false;
     protected $fillable = [
         'name',
-        'slug', '
-        kichhoat',
+        'slug',
+        'kichhoat',
     ];
     protected $primaryKey = 'id';
     protected $table = 'theloais';

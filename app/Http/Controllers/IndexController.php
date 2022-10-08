@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DanhMuc;
 use App\Models\SanPham;
+use App\Models\Sanpham_Theloai;
 use App\Models\TheLoai;
 
 class IndexController extends Controller
@@ -13,12 +14,12 @@ class IndexController extends Controller
         $list_danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
         $list_theloai = TheLoai::orderBy('id', 'DESC')->get();
 
-        $list_sanpham_moi = SanPham::with('danhMuc', 'theLoai')
+        $list_sanpham_moi = SanPham::with('danhMuc', 'ntheLoai')
             ->orderBy('id', 'DESC')
             ->take(4)
             ->get();
 
-        $list_sanpham_khuyenmai = SanPham::with('danhMuc', 'theLoai')
+        $list_sanpham_khuyenmai = SanPham::with('danhMuc', 'ntheLoai')
             ->where('giakhuyenmai', '!=', '0')
             ->orderBy('giakhuyenmai', 'ASC')
             ->take(4)
@@ -33,7 +34,7 @@ class IndexController extends Controller
         $list_theloai = TheLoai::orderBy('id', 'DESC')->get();
 
         $ten_sanpham = SanPham::select('name')->where('slug', '=', $slug)->first();
-        $chitiet_sanpham = SanPham::with('danhMuc', 'theLoai')
+        $chitiet_sanpham = SanPham::with('danhMuc', 'ntheLoai')
             ->where('slug', '=', $slug)
             ->get();
 
@@ -47,8 +48,9 @@ class IndexController extends Controller
 
         $danhmuc_id = DanhMuc::where('slug', $slug)->first();
         $tendanhmuc = $danhmuc_id->name;
+
         //lay danhmuc.id so sánh với sanpham.danhmuc.id
-        $chitiet_sanpham = SanPham::with('danhMuc', 'theLoai')
+        $chitiet_sanpham = SanPham::with('danhMuc', 'ntheLoai')
             ->where('danhmuc_id', '=', $danhmuc_id->id)
             ->orderBy('id', 'DESC')
             ->get();
@@ -61,13 +63,18 @@ class IndexController extends Controller
         $list_danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
         $list_theloai = TheLoai::orderBy('id', 'DESC')->get();
 
-        $theloai_id = TheLoai::where('slug', $slug)->first();
-        $tentheloai = $theloai_id->name;
+        $theloai_id = TheLoai::where('slug', $slug)->first();   //lấy ra id từ slug
+        $tentheloai = $theloai_id->name;    //lấy ra name từ $theloai_id
 
-        $chitiet_sanpham = SanPham::with('danhMuc', 'theLoai')
-            ->where('theloai_id', '=', $theloai_id->id)
+        $sanpham_theloai = Sanpham_Theloai::where('theloai_id', $theloai_id->id)->get(); //lấy theloai_id từ $theloai_id trong bảng Sanpham_Theloai
+        $ntheLoai = [];
+        foreach ($sanpham_theloai as $sp_tl) {
+            $ntheLoai[] = $sp_tl->sanpham_id;
+        }   //đưa thể loại lấy được từ $sanpham_theloai vào chuổi $ntheLoai
+
+        $chitiet_sanpham = SanPham::whereIn('id', $ntheLoai)
             ->orderBy('id', 'DESC')
-            ->get();
+            ->get();    //so sánh và chọn sanpham.id trong chuỗi $ntheLoai
 
         return view('pages.theloai')->with(compact('list_danhmuc', 'list_theloai', 'chitiet_sanpham', 'tentheloai'));
     }
