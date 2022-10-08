@@ -1,12 +1,13 @@
 @extends('welcome')
-@include('pages.nav')
-@section('content')
+
+@section('index')
+    @include('pages.nav')
     <div class="container">
         <h4 class="mt-3">Thể Loại: {{ $tentheloai }}</h4>
         <div class="row mt-3">
             @foreach($chitiet_sanpham as $sanpham)
                 <div class="col-sm-3">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
                         <img src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}" class="card-img-top" alt="{{ $sanpham->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $sanpham->name }}</h5>

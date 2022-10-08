@@ -4,10 +4,10 @@
         <b>DANH MỤC</b>
         <div class="owl-carousel owl-theme">
             @foreach ($list_danhmuc as $danhmuc)
-                <div class="item">
+                <div class="item shadow-sm bg-body rounded">
                     <div class="card text-center">
-                        <div class="card-body">
-                            <a href="{{ route('category', $danhmuc->slug) }}"><b>{{ $danhmuc->name }}</b></a>
+                        <div class="card-body ">
+                            <a href="{{ route('category', $danhmuc->slug) }}" style="text-decoration: none"><b>{{ $danhmuc->name }}</b></a>
                         </div>
                     </div>
                 </div>
@@ -22,10 +22,10 @@
         <b>THỂ LOẠI</b>
         <div class="owl-carousel owl-theme">
             @foreach ($list_theloai as $theloai)
-                <div class="item">
+                <div class="item shadow-sm bg-body rounded">
                     <div class="card text-center">
                         <div class="card-body">
-                            <a href="{{ route('genre', $theloai->slug) }}"><b>{{ $theloai->name }}</b></a>
+                            <a href="{{ route('genre', $theloai->slug) }}" style="text-decoration: none"><b>{{ $theloai->name }}</b></a>
                         </div>
                     </div>
                 </div>

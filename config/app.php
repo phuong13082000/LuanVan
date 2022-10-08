@@ -195,7 +195,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Yajra\DataTables\DataTablesServiceProvider::class,
         Flasher\Laravel\FlasherServiceProvider::class,
     ],
 
@@ -214,6 +213,5 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
-    'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     'Flasher' => Flasher\Laravel\Facade\Flasher::class,
 ];

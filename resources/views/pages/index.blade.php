@@ -1,7 +1,8 @@
 @extends('welcome')
+
+@section('index')
     @include('pages.nav')
     @include('pages.carousel')
-@section('content')
 <!--Tabs-->
 <div class="container">
     <div class="mt-3">
@@ -23,7 +24,7 @@
 
                         @foreach($list_sanpham_moi as $sanpham_moi)
                             <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
+                                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
                                     <img src="{{asset('uploads/sanpham/'.$sanpham_moi->hinhanh)}}" class="card-img-top" alt="{{ $sanpham_moi->name }}">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $sanpham_moi->name }}</h5>
@@ -63,7 +64,7 @@
 
                         @foreach($list_sanpham_khuyenmai as $sanpham_khuyenmai)
                             <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
+                                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
                                     <img src="{{asset('uploads/sanpham/'.$sanpham_khuyenmai->hinhanh)}}" class="card-img-top" alt="{{ $sanpham_khuyenmai->name }}">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $sanpham_khuyenmai->name }}</h5>

@@ -20,14 +20,14 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="tablesanpham">
+                        <table class="table table-striped" id="tablesanpham">
                             <thead>
                             <tr>
                                 <th>Hình Ảnh</th>
                                 <th>Tên Sản Phẩm</th>
                                 <th>Đường dẫn</th>
                                 <th>Giá</th>
-                                <th>Giá Khuyến mãi</th>
+                                <th>Giá Khuyến Mãi</th>
                                 <th>Số lượng</th>
                                 <th>Danh mục</th>
                                 <th>Thể Loại</th>

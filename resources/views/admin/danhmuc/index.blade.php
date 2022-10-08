@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table" id="tablesanpham">
+                        <table class="table table-striped" id="tablesanpham">
                             <thead>
                             <tr>
                                 <th>ID</th>

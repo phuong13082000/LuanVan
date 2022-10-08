@@ -1,6 +1,6 @@
 @extends('welcome')
     @include('pages.nav')
-@section('content')
+@section('index')
 
     <div class="container">
         <div class="row mt-3">

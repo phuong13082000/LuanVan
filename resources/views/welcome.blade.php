@@ -6,21 +6,20 @@
 
     <title>Home</title>
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/owl-carousel.min.css')}}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
 </head>
 <body>
 <div class="container">
 
-    @yield('content')
+    @yield('index')
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('frontend/js/owl-carousel.min.js')}}"></script>
 
     <!--script-owl-carousel-->
     <script type="text/javascript">
