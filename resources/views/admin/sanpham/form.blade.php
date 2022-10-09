@@ -75,52 +75,30 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
                                     <div class="input-group">
                                         {!! Form::label('Danhmuc', 'Danh mục', ['class'=>'input-group-text', 'for'=>'inputGroupSelect01']) !!}
                                         {!! Form::select('danhmuc_id', $danhmuc, isset($sanpham) ? $sanpham->danhmuc_id : '', ['class'=>'form-select' ,'id'=>'inputGroupSelect01']) !!}
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        {!! Form::label('Theloai', 'Thể loại', []) !!}
-                                        @foreach ($list_theloai as $ntheloai )
-                                            @if (isset($sanpham))
-                                                <br>{!! Form::checkbox('theloai[]', $ntheloai->id, isset($sanpham_theloai) && $sanpham_theloai->contains($ntheloai->id) ? true : false) !!}
-                                            @else
-                                                <br>{!! Form::checkbox('theloai[]', $ntheloai->id, '') !!}
-                                            @endif
-                                            {!! Form::label('theloai', $ntheloai->name) !!}
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col-sm-6">
+                                <div class="mb-3">
                                     <div class="form-group">
                                         {!! Form::label('Gia', 'Giá', []) !!}
                                         {!! Form::number('gia', isset($sanpham) ? $sanpham->gia : '', ['class'=>'form-control']) !!}
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="mb-3">
                                     <div class="form-group">
                                         {!! Form::label('Giakhuyenmai', 'Giá khuyến mãi', []) !!}
-                                        {!! Form::number('giakhuyenmai', isset($sanpham) ? $sanpham->giakhuyenmai : '', ['class'=>'form-control']) !!}
+                                        {!! Form::number('giakhuyenmai', isset($sanpham) ? $sanpham->giakhuyenmai : 0, ['class'=>'form-control']) !!}
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col-sm-6">
+                                <div class="mb-3">
                                     <div class="form-group">
                                         {!! Form::label('Soluong', 'Số lượng', []) !!}
                                         {!! Form::number('soluong', isset($sanpham) ? $sanpham->soluong : '', ['class'=>'form-control']) !!}
@@ -128,7 +106,27 @@
                                 </div>
 
                             </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label('Theloai', 'Thể loại', []) !!}
+                                    <div class="row">
+                                        @foreach ($list_theloai as $ntheloai )
+                                            <div class="col-sm-4">
+                                            @if (isset($sanpham))
+                                                {!! Form::checkbox('theloai[]', $ntheloai->id, isset($sanpham_theloai) && $sanpham_theloai->contains($ntheloai->id) ? true : false) !!}
+                                            @else
+                                                {!! Form::checkbox('theloai[]', $ntheloai->id, '') !!}
+                                            @endif
+                                            {!! Form::label('theloai', $ntheloai->name) !!}
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+
 
                         <div class="mb-3">
                             <div class="form-group">

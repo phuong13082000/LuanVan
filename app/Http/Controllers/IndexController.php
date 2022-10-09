@@ -78,4 +78,5 @@ class IndexController extends Controller
 
         return view('pages.theloai')->with(compact('list_danhmuc', 'list_theloai', 'chitiet_sanpham', 'tentheloai'));
     }
+
 }
