@@ -29,10 +29,10 @@ class CartController extends Controller
         $chitiet_sanpham = SanPham::where('id', $sanpham_id)->first();
 
         $data['id'] = $sanpham_id;
-        $data['qty'] = $soluong;
+        $data['qty'] = $soluong; //số lượng chọn
         $data['name'] = $chitiet_sanpham->name;
-        $data['price'] = $chitiet_sanpham->gia;
-        $data['weight'] = $chitiet_sanpham->gia;
+        $data['price'] = $chitiet_sanpham->giakhuyenmai ?: $chitiet_sanpham->gia;
+        $data['weight'] = $chitiet_sanpham->soluong; //soluong tổng
         $data['options']['image'] = $chitiet_sanpham->hinhanh;
 
         Cart::add($data);
@@ -59,6 +59,7 @@ class CartController extends Controller
                     'product_id' => $data['cart_product_id'],
                     'product_image' => $data['cart_product_image'],
                     'product_qty' => $data['cart_product_qty'],
+                    'product_weight' => $data['cart_product_weight'],
                     'product_price' => $data['cart_product_price'],
                 );
                 Session::put('cart',$cart);
@@ -70,6 +71,7 @@ class CartController extends Controller
                 'product_id' => $data['cart_product_id'],
                 'product_image' => $data['cart_product_image'],
                 'product_qty' => $data['cart_product_qty'],
+                'product_weight' => $data['cart_product_weight'],
                 'product_price' => $data['cart_product_price'],
             );
             Session::put('cart',$cart);

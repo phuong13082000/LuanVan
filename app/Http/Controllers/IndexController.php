@@ -25,7 +25,8 @@ class IndexController extends Controller
             ->take(4)
             ->get();
 
-        $sanpham_id = Sanpham_Theloai::where('theloai_id','11')->get();
+        $phukien_id = TheLoai::where('slug', 'phu-kien')->first();
+        $sanpham_id = Sanpham_Theloai::where('theloai_id', $phukien_id->id)->get();
         $ntheLoai = [];
         foreach ($sanpham_id as $sanpham_theloai) {
             $ntheLoai[] = $sanpham_theloai->sanpham_id;

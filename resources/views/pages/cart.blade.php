@@ -11,20 +11,21 @@
                 @endphp
                 <table class="table table-condensed">
                     <thead>
-                        <tr class="cart_menu">
-                            <td class="image">Hình ảnh</td>
-                            <td class="description">Tên sản phẩm</td>
-                            <td class="price">Giá</td>
-                            <td class="quantity">Số lượng</td>
-                            <td class="total">Tổng</td>
-                            <td></td>
-                        </tr>
+                    <tr class="cart_menu">
+                        <td class="image">Hình ảnh</td>
+                        <td class="description">Tên sản phẩm</td>
+                        <td class="price">Giá</td>
+                        <td class="quantity">Số lượng</td>
+                        <td class="total">Tổng</td>
+                        <td></td>
+                    </tr>
                     </thead>
                     <tbody>
                     @foreach($content as $v_content)
                         <tr>
                             <td class="cart_product">
-                                <img src="{{asset('uploads/sanpham/'.$v_content->options->image)}}" width="90" alt="{{$v_content->name}}" />
+                                <img src="{{asset('uploads/sanpham/'.$v_content->options->image)}}" width="90"
+                                     alt="{{$v_content->name}}"/>
                             </td>
 
                             <td class="cart_description">
@@ -38,8 +39,9 @@
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
                                     {!! Form::open(['url'=>'/update-cart-quantity', 'method'=>'POST']) !!}
-                                        @csrf
-                                        {!! Form::text('cart_quantity', $v_content->qty, ['class'=>'cart_quantity_input', 'type' => 'text']) !!}
+                                        <label>
+                                            <input name="cart_quantity" type="number" min="1" max="{{$v_content->weight}}" class="cart_quantity_input" value="{{$v_content->qty}}">
+                                        </label>
                                         {!! Form::submit('Cập nhật', ['class'=>'btn btn-success btn-sm']) !!}
                                         <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" class="form-control">
                                     {!! Form::close() !!}
@@ -72,16 +74,17 @@
                     <div class="col-sm-6">
                         <div class="total_area">
                             <ul>
-                                <li>Tổng <span>{{Cart::total().' '.'vnđ'}}</span></li>
-                                <li>Thuế <span>{{Cart::tax().' '.'vnđ'}}</span></li>
-                                <li>Phí vận chuyển <span>Free</span></li>
                                 <li>Thành tiền <span>{{Cart::total().' '.'vnđ'}}</span></li>
                             </ul>
 
                             @if(Auth::user()!=NULL)
-                                <a class="btn btn-primary check_out" href="{{URL::to('/checkout')}}">Thanh toán</a>
+                                <a class="btn btn-primary" href="{{URL::to('/checkout')}}">Thanh toán</a>
+                                <a class="btn btn-success" href="{{URL::to('/')}}">Home</a>
+
                             @else
-                                <a class="btn btn-primary check_out" href="{{URL::to('/login-checkout')}}">Thanh toán</a>
+                                <a class="btn btn-primary" href="{{URL::to('/login-checkout')}}">Thanh toán</a>
+                                <a class="btn btn-primary" href="{{URL::to('/')}}">Home</a>
+
                             @endif
 
                         </div>
