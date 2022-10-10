@@ -11,37 +11,41 @@
                 @endphp
                 <table class="table table-condensed">
                     <thead>
-                    <tr class="cart_menu">
-                        <td class="image">Hình ảnh</td>
-                        <td class="description">Tên sản phẩm</td>
-                        <td class="price">Giá</td>
-                        <td class="quantity">Số lượng</td>
-                        <td class="total">Tổng</td>
-                        <td></td>
-                    </tr>
+                        <tr class="cart_menu">
+                            <td class="image">Hình ảnh</td>
+                            <td class="description">Tên sản phẩm</td>
+                            <td class="price">Giá</td>
+                            <td class="quantity">Số lượng</td>
+                            <td class="total">Tổng</td>
+                            <td></td>
+                        </tr>
                     </thead>
                     <tbody>
                     @foreach($content as $v_content)
-                            <tr>
+                        <tr>
                             <td class="cart_product">
-                                <a href=""><img src="{{asset('uploads/sanpham/'.$v_content->options->image)}}" width="90" alt="" /></a>
+                                <img src="{{asset('uploads/sanpham/'.$v_content->options->image)}}" width="90" alt="{{$v_content->name}}" />
                             </td>
+
                             <td class="cart_description">
                                 <h4>{{$v_content->name}}</a></h4>
                             </td>
+
                             <td class="cart_price">
                                 <p>{{number_format($v_content->price).' '.'vnđ'}}</p>
                             </td>
+
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
-                                    <form action="{{url('/update-cart-quantity')}}" method="POST">
+                                    {!! Form::open(['url'=>'/update-cart-quantity', 'method'=>'POST']) !!}
                                         @csrf
-                                        <input class="cart_quantity_input" type="text" name="cart_quantity" value="{{$v_content->qty}}">
+                                        {!! Form::text('cart_quantity', $v_content->qty, ['class'=>'cart_quantity_input', 'type' => 'text']) !!}
+                                        {!! Form::submit('Cập nhật', ['class'=>'btn btn-success btn-sm']) !!}
                                         <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" class="form-control">
-                                        <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-primary btn-sm">
-                                    </form>
+                                    {!! Form::close() !!}
                                 </div>
                             </td>
+
                             <td class="cart_total">
                                 <p class="cart_total_price">
                                     @php
@@ -50,9 +54,11 @@
                                     @endphp
                                 </p>
                             </td>
+
                             <td class="cart_delete">
                                 <a class="cart_quantity_delete" href="{{url('/delete-to-cart/'.$v_content->rowId)}}"><i class="fa fa-times"></i></a>
                             </td>
+
                         </tr>
                     @endforeach
                     </tbody>

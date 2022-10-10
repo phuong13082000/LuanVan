@@ -25,7 +25,17 @@ class IndexController extends Controller
             ->take(4)
             ->get();
 
-        return view('pages.index')->with(compact('list_danhmuc', 'list_theloai', 'list_sanpham_moi', 'list_sanpham_khuyenmai'));
+        $sanpham_id = Sanpham_Theloai::where('theloai_id','11')->get();
+        $ntheLoai = [];
+        foreach ($sanpham_id as $sanpham_theloai) {
+            $ntheLoai[] = $sanpham_theloai->sanpham_id;
+        }
+        $list_phukien = SanPham::with('danhMuc', 'ntheLoai')
+            ->whereIn('id', $ntheLoai)
+            ->take(4)
+            ->get();
+
+        return view('pages.index')->with(compact('list_danhmuc', 'list_theloai', 'list_sanpham_moi', 'list_sanpham_khuyenmai', 'list_phukien'));
     }
 
     public function detail($slug)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
 use App\Models\TheLoai;
+use Flasher\Prime\FlasherInterface;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -19,7 +20,7 @@ class CartController extends Controller
         return view('pages.cart')->with(compact('list_danhmuc', 'list_theloai'));
     }
 
-    public function save_cart(Request $request){
+    public function save_cart(Request $request, FlasherInterface $flasher){
         $list_danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
         $list_theloai = TheLoai::orderBy('id', 'DESC')->get();
 
@@ -36,44 +37,8 @@ class CartController extends Controller
 
         Cart::add($data);
 
+        $flasher->addSuccess('Đã thêm vào giỏ hàng!');
         return view('pages.cart')->with(compact('list_danhmuc', 'list_theloai'));
-    }
-
-    //public function update_cart(Request $request)
-    //{
-    //    $data = $request->all();
-    //
-    //    $cart = Session::get('cart');
-    //    if ($cart == true) {
-    //        foreach ($data['cart_soluong'] as $key => $qty) {
-    //            foreach ($cart as $session => $val) {
-    //                if ($val['session_id'] == $key) {
-    //                    $cart[$session]['soluong'] = $qty;
-    //                }
-    //            }
-    //        }
-    //        Session::put('cart', $cart);
-    //        return redirect()->back()->with('message', 'Cập nhật số lượng thành công');
-    //    } else {
-    //        return redirect()->back()->with('message', 'Cập nhật số lượng thất bại');
-    //    }
-    //}
-
-    public function delete_product($session_id){
-        $cart = Session::get('cart');
-        if($cart==true){
-            foreach($cart as $key => $val){
-                if($val['session_id']==$session_id){
-                    unset($cart[$key]);
-                }
-            }
-            Session::put('cart',$cart);
-            return redirect()->back()->with('message','Xóa sản phẩm thành công');
-
-        }else{
-            return redirect()->back()->with('message','Xóa sản phẩm thất bại');
-        }
-
     }
 
     public function add_cart_ajax(Request $request){
@@ -112,17 +77,20 @@ class CartController extends Controller
         Session::save();
     }
 
-    public function delete_to_cart($rowId){
+    public function delete_to_cart($rowId, FlasherInterface $flasher){
         Cart::update($rowId,0);
 
+        $flasher->addSuccess('Đã xóa sản phẩm trong giỏ hàng!');
         return redirect('/show-cart');
     }
 
-    public function update_cart_quantity(Request $request){
+    public function update_cart_quantity(Request $request, FlasherInterface $flasher){
         $rowId = $request->rowId_cart;
         $qty = $request->cart_quantity;
 
         Cart::update($rowId,$qty);
+
+        $flasher->addSuccess('Đã thêm vào giỏ hàng!');
         return redirect('/show-cart');
     }
 }

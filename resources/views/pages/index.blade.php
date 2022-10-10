@@ -22,6 +22,14 @@
                     </b>
                 </button>
             </li>
+
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="phukien-tab" data-bs-toggle="tab" data-bs-target="#phukien" type="button" role="tab" aria-controls="phukien" aria-selected="false">
+                    <b>
+                        Phụ kiện
+                    </b>
+                </button>
+            </li>
         </ul>
         <div class="mt-3">
             <div class="tab-content" id="myTabContent">
@@ -97,6 +105,46 @@
 
                                         <a href="#" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
                                         <a href="{{route('detail',$sanpham_khuyenmai->slug)}}" class="btn btn-outline-primary">Detail</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="phukien" role="tabpanel" aria-labelledby="phukien-tab">
+                    <div class="row">
+
+                        @foreach($list_phukien as $phukien)
+                            <div class="col-sm-3">
+                                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+                                    <img src="{{asset('uploads/sanpham/'.$phukien->hinhanh)}}" class="card-img-top" alt="{{ $phukien->name }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $phukien->name }}</h5>
+                                        <p class="card-subtitle">
+                                            @php
+                                                $gia = number_format($phukien->gia, 0, '', ',');
+                                                $giaKhuyenMai =  number_format($phukien->giakhuyenmai, 0, '', ',');
+                                                $phanTramGiam = round(100 - ($phukien->giakhuyenmai / $phukien->gia * 100), PHP_ROUND_HALF_UP);
+                                            @endphp
+
+                                            @if($phukien->soluong)
+                                                @if($phukien->giakhuyenmai)
+                                                    <del>{{ $gia }} VND</del><b style="color: red"> -{{ $phanTramGiam }}%</b>
+                                                    <br><b>{{ $giaKhuyenMai }} VND</b>
+                                                @else
+                                                    <b>{{ $gia }} VND</b>
+                                                @endif
+                                            @else
+                                                <b style="color: red">Hết Hàng</b>
+                                            @endif
+
+                                        </p>
+                                        <p class="card-text">{!! $phukien->cauhinh !!}</p>
+
+                                        <a href="#" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
+                                        <a href="{{route('detail',$phukien->slug)}}" class="btn btn-outline-primary">Detail</a>
                                     </div>
                                 </div>
                             </div>
