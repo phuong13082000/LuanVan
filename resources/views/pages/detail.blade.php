@@ -23,12 +23,7 @@
                 </div>
 
                 <div class="col-sm-6">
-                    {!! Form::open(['url'=>'/save-cart', 'method'=>'POST','enctype'=>'multipart/form-data']) !!}
-                        {!! Form::hidden('id', $sanpham->id, ['class'=>'cart_product_id_'.$sanpham->id]) !!}
-                        {!! Form::hidden('name', $sanpham->name, ['class'=>'cart_product_name_'.$sanpham->id]) !!}
-                        {!! Form::hidden('hinhanh', $sanpham->hinhanh, ['class'=>'cart_product_image_'.$sanpham->id]) !!}
-                        {!! Form::hidden('soluong', $sanpham->soluong, ['class'=>'cart_product_weight_'.$sanpham->id]) !!}
-                        {!! Form::hidden('gia', $sanpham->giakhuyenmai ?: $sanpham->gia, ['class'=>'cart_product_price_'.$sanpham->id]) !!}
+                    {!! Form::open(['url' => '/save-cart', 'method'=>'POST','enctype'=>'multipart/form-data']) !!}
 
                     @if($sanpham->soluong)
                         @if($sanpham->giakhuyenmai)
@@ -61,7 +56,7 @@
                         {!! Form::hidden('productid_hidden', $sanpham->id) !!}
                     </span>
 
-                    <input type="submit" value="Thêm giỏ hàng" class="btn btn-primary add-to-cart" data-id_product="{{$sanpham->id}}">
+                    <input type="submit" value="Thêm giỏ hàng" class="btn btn-primary add-to-cart"">
 
                     <!--Cấu hình-->
                     <div class="row justify-content-center mt-3 mb-3">

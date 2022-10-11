@@ -197,6 +197,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Flasher\Laravel\FlasherServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
     ],
 
     /*
@@ -216,6 +217,6 @@ return [
 
     'Form' => Collective\Html\FormFacade::class,
     'Html' => Collective\Html\HtmlFacade::class,
-
+    'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
     'Flasher' => Flasher\Laravel\Facade\Flasher::class,
 ];

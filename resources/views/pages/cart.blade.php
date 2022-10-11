@@ -24,8 +24,7 @@
                     @foreach($content as $v_content)
                         <tr>
                             <td class="cart_product">
-                                <img src="{{asset('uploads/sanpham/'.$v_content->options->image)}}" width="90"
-                                     alt="{{$v_content->name}}"/>
+                                <img src="{{asset('uploads/sanpham/'.$v_content->options->image)}}" width="90" alt="{{$v_content->name}}"/>
                             </td>
 
                             <td class="cart_description">

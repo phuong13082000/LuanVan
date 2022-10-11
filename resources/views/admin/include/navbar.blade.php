@@ -16,6 +16,11 @@
             <div class="mt-3">
                 <a class="nav-link" href="{{route('sanpham.index')}}">Sản Phẩm</a>
             </div>
+
+            <div class="mt-3">
+                <a class="nav-link" href="{{url('order')}}">Order</a>
+            </div>
+
             <hr>
         </div>
     </nav>

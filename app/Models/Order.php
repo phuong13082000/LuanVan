@@ -9,11 +9,18 @@ class Order extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
     protected $fillable = [
-        'user_id',
+        'customer_id',
         'shipping_id',
         'status',
-        'code',
+        'code_order',
         'huybo',
     ];
+
+    public function shipping()
+    {
+        return $this->belongsTo(Shipping::class, 'shipping_id');
+    }
 }

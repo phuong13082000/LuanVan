@@ -20,6 +20,9 @@
     <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
     <script src="{{asset('frontend/js/jquery-ui.min.js')}}"></script>
     <script src="{{asset('frontend/js/owl-carousel.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"
+            integrity="sha512-7VTiy9AhpazBeKQAlhaLRUk+kAMAb8oczljuyJHPsVPWox/QIXDFOnT9DUk1UC8EbnHKRdQowT7sOBe7LAjajQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!--script-owl-carousel-->
     <script type="text/javascript">
@@ -41,44 +44,35 @@
         })
     </script>
 
-    <!--add-to-cart-->
+    <!--shipping-->
     <script type="text/javascript">
         $(document).ready(function () {
-            $('.add-to-cart').click(function () {
-                var id = $(this).data('id_product');
-                var cart_product_id = $('.cart_product_id_' + id).val();
-                var cart_product_name = $('.cart_product_name_' + id).val();
-                var cart_product_image = $('.cart_product_image_' + id).val();
-                var cart_product_price = $('.cart_product_price_' + id).val();
-                var cart_product_qty = $('.cart_product_qty_' + id).val();
-                var cart_product_weight = $('.cart_product_weight_' + id).val();
+            $('.send_order').click(function () {
+                var shipping_email = $('.shipping_email').val();
+                var shipping_name = $('.shipping_name').val();
+                var shipping_address = $('.shipping_address').val();
+                var shipping_phone = $('.shipping_phone').val();
+                var shipping_notes = $('.shipping_notes').val();
+                var shipping_method = $('.payment_select').val();
                 var _token = $('input[name="_token"]').val();
+
                 $.ajax({
-                    url: '{{url('/add-cart-ajax')}}',
+                    url: '{{url('/confirm-order')}}',
                     method: 'POST',
                     data: {
-                        cart_product_id: cart_product_id,
-                        cart_product_name: cart_product_name,
-                        cart_product_image: cart_product_image,
-                        cart_product_price: cart_product_price,
-                        cart_product_qty: cart_product_qty,
-                        cart_product_weight: cart_product_weight,
-                        _token: _token},
-                    success: function () {
-                        swal({
-                                title: "Đã thêm sản phẩm vào giỏ hàng",
-                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
-                                showCancelButton: true,
-                                cancelButtonText: "Xem tiếp",
-                                confirmButtonClass: "btn btn-success",
-                                confirmButtonText: "Đi đến giỏ hàng",
-                                closeOnConfirm: false
-                            },
-                            function () {
-                                window.location.href = "{{url('/save-cart')}}";
-                            });
-                    }
+                        shipping_email: shipping_email,
+                        shipping_name: shipping_name,
+                        shipping_address: shipping_address,
+                        shipping_phone: shipping_phone,
+                        shipping_notes: shipping_notes,
+                        shipping_method: shipping_method,
+                        _token: _token
+                    },
                 });
+                window.setTimeout(function () {
+                    location.reload();
+                    window.location.href = "{{url('/')}}";
+                }, 3000);
             });
         });
     </script>

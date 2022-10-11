@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SanPhamRequest;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
-use App\Models\Sanpham_Theloai;
 use App\Models\TheLoai;
 use Flasher\Prime\FlasherInterface;
 
