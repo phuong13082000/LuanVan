@@ -6,6 +6,7 @@ use App\Http\Requests\DanhMucRequest;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
 use Flasher\Prime\FlasherInterface;
+session_start();
 
 class DanhMucController extends Controller
 {

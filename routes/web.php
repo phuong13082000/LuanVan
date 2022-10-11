@@ -26,6 +26,8 @@ Route::get('/delete-to-cart/{rowId}',[CartController::class, 'delete_to_cart']);
 //Checkout
 Route::get('/logout-customer',[CheckoutController::class, 'logout_customer']);
 Route::post('/login-customer',[CheckoutController::class, 'login_customer']);
+Route::post('/add-customer',[CheckoutController::class, 'add_customer']);
+Route::get('/dang-nhap',[CheckoutController::class, 'dangnhap']);
 
 Route::get('/checkout',[CheckoutController::class, 'checkout']);
 Route::post('/confirm-order',[CheckoutController::class, 'confirm_order']);

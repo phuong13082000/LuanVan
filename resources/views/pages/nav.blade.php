@@ -34,12 +34,25 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{url('/show-cart')}}">{{Cart::count()}}<i class="fa fa-shopping-cart"></i> Giỏ Hàng</a>
+                        <a class="nav-link" aria-current="page" href="{{url('/show-cart')}}"><i class="fa fa-shopping-cart" style="color: red">{{Cart::count()}}</i> Giỏ Hàng</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#"><i class="fa fa-user"></i> Tài Khoản</a>
-                    </li>
+                    @php
+                        $customer_id = Session::get('customer_id');
+                    @endphp
+                    @if(!$customer_id)
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{url('/dang-nhap')}}"><i class="fa fa-user"></i> Đăng Nhập</a>
+                        </li>
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i> {{Session::get('customer_name')}}</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{url('/logout-customer')}}"> Logout</a></li>
+                            </ul>
+                        </li>
+                    @endif
+
                 </ul>
 
                 <!--Search-->

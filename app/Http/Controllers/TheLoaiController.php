@@ -7,6 +7,7 @@ use App\Models\SanPham;
 use App\Models\Sanpham_Theloai;
 use App\Models\TheLoai;
 use Flasher\Prime\FlasherInterface;
+session_start();
 
 class TheLoaiController extends Controller
 {

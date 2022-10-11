@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+session_start();
 
 class OrderController extends Controller
 {
