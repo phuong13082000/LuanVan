@@ -22,15 +22,14 @@
                                 <th>Người nhận</th>
                                 <th>Trạng thái</th>
                                 <th>HuyBo</th>
-                                <th>Created_at</th>
-                                <th>Updated_at</th>
+                                <th>Ngày tạo</th>
                                 <th>Quản Lý</th>
                             </tr>
                             </thead>
                             <tbody class="order_position">
                             @foreach ($list_order as $order )
                                 <tr>
-                                    <td>{{$order->customer_id}}</td>
+                                    <td>{{$order->customer->customer_name}}</td>
                                     <td>{{$order->shipping->shipping_name}}</td>
                                     <td>
                                         @if($order->status==1)
@@ -47,7 +46,6 @@
                                         @endif
                                     </td>
                                     <td>{{$order->created_at}}</td>
-                                    <td>{{$order->updated_at}}</td>
                                     <td>
                                         <a href="{{url('/order-detail/'.$order->code_order)}}" class="btn btn-primary"><i class="fa fa-eye"></i> View</a>
 
@@ -56,7 +54,6 @@
                                             @csrf
                                             <button onclick="return confirm('Bạn có chắc là muốn xóa danh mục này ko?');" class="btn btn-danger"><i class="fa fa-trash"></i> Xóa</button>
                                         </form>
-
                                     </td>
 
                                 </tr>

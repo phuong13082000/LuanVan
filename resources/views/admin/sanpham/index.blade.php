@@ -65,9 +65,7 @@
                                         <form action="{{route('sanpham.destroy',[$sanpham->id])}}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button onclick="return confirm('Bạn có muốn xóa danh mục này?');"
-                                                    class="btn btn-danger"><i class="fa fa-trash"></i> Xóa
-                                            </button>
+                                            <button onclick="return confirm('Bạn có muốn xóa danh mục này?');" class="btn btn-danger"><i class="fa fa-trash"></i> Xóa </button>
                                         </form>
                                     </td>
 
