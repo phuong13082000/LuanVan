@@ -6,7 +6,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
@@ -48,6 +48,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i> {{Session::get('customer_name')}}</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{url('/profile/'.$customer_id)}}"> Profile</a></li>
                                 <li><a class="dropdown-item" href="{{url('/logout-customer')}}"> Logout</a></li>
                             </ul>
                         </li>
@@ -55,12 +56,14 @@
 
                 </ul>
 
-                <!--Search-->
-                <form autocomplete="off" class="d-flex mt-3 mb-3" action="{{ url('tim-kiem') }}" method="POST">
+                {{--Search--}}
+                <form class="form-floating mb-3 mt-3 d-flex" action="{{ url('tim-kiem') }}" method="POST" autocomplete="off">
                     @csrf
-                    <input class="form-control me-2" type="search" id="keywords" name="tukhoa" aria-label="Search">
+                    <input class="form-control me-2" type="search" id="keywords" name="tukhoa" aria-label="Search" placeholder="Tìm kiếm theo tên">
+                    <label for="keywords">Tìm kiếm theo tên</label>
+
                     <div id="search_ajax"></div>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
     </nav>

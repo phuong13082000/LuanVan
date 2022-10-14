@@ -16,7 +16,8 @@
                 <div class="card-body">
 
                     <div class="mb-3">
-                        <a href="{{ route('danhmuc.create') }}" type="button" class="btn btn-primary">Thêm</a>
+                        {{--<a href="{{ route('danhmuc.create') }}" type="button" class="btn btn-primary">Thêm</a>--}}
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDanhmuc">Thêm</button>
                     </div>
 
                     <div class="table-responsive">
@@ -25,7 +26,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Tên Danh Mục</th>
-                                <th>Đường dẫn</th>
                                 <th>Kích Hoạt</th>
                                 <th>Quản Lý</th>
                             </tr>
@@ -35,7 +35,6 @@
                                 <tr id="{{$danhmuc->id}}">
                                     <th scope="row">{{$key}}</th>
                                     <td>{{$danhmuc->name}}</td>
-                                    <td>{{$danhmuc->slug}}</td>
                                     <td>
                                         @if ($danhmuc->kichhoat==0)
                                             <span class="text text-success"><i class="fa fa-thumbs-up"></i></span>
@@ -59,6 +58,50 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{--modal them danhmuc--}}
+    <div class="modal fade" id="modalDanhmuc" tabindex="-1" aria-labelledby="modalDanhmucLable" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDanhmucLable">Thêm danh mục</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['route'=>'danhmuc.store', 'method'=>'POST']) !!}
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            {!! Form::label('name', 'Tên danh mục', []) !!}
+                            {!! Form::text('name', '', ['class'=>'form-control', 'id'=>'slug', 'onkeyup'=>'ChangeToSlug()']) !!}
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            {!! Form::label('slug', 'Đường dẫn', []) !!}
+                            {!! Form::text('slug', '', ['class'=>'form-control', 'id'=>'convert_slug']) !!}
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            {!! Form::label('kichhoat', 'Trạng thái', []) !!}
+                            {!! Form::select('kichhoat', ['0'=>'Hiển thị', '1'=>'Không hiển thị'], '', ['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+
+                    <div class="modal-footer mb-3">
+                        {!! Form::submit('Thêm', ['class'=>'btn btn-success']) !!}
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+
+                    {!! Form::close() !!}
+
                 </div>
             </div>
         </div>

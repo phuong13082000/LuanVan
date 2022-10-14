@@ -43,7 +43,7 @@
                                 $phanTramGiam = round(100 - ($sanpham_moi->giakhuyenmai / $sanpham_moi->gia * 100), PHP_ROUND_HALF_UP); //PHP_ROUND_HALF_UP làm tròn 1,5->2
                             @endphp
                             <div class="col-sm-3">
-                                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+                                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem; height: 50rem">
                                     @if($sanpham_moi->giakhuyenmai)
                                         <b class="rounded khuyenmai">- {{$phanTramGiam}} %</b>
                                     @endif
@@ -75,6 +75,7 @@
                                 </div>
                             </div>
                         @endforeach
+
                     </div>
                 </div>
 
@@ -88,7 +89,7 @@
                                 $phanTramGiam = round(100 - ($sanpham_khuyenmai->giakhuyenmai / $sanpham_khuyenmai->gia * 100), PHP_ROUND_HALF_UP);
                             @endphp
                             <div class="col-sm-3">
-                                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+                                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem; height: 50rem">
                                     <b class="rounded khuyenmai">- {{$phanTramGiam}} %</b>
                                     <img src="{{asset('uploads/sanpham/'.$sanpham_khuyenmai->hinhanh)}}" class="card-img-top" alt="{{ $sanpham_khuyenmai->name }}">
                                     <div class="card-body">
@@ -133,7 +134,7 @@
                                 $phanTramGiam = round(100 - ($phukien->giakhuyenmai / $phukien->gia * 100), PHP_ROUND_HALF_UP);
                             @endphp
                             <div class="col-sm-3">
-                                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+                                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem; height: 50rem">
                                     @if($phukien->giakhuyenmai)
                                         <b class="rounded khuyenmai">- {{$phanTramGiam}} %</b>
                                     @endif
@@ -178,9 +179,10 @@
 <div class="container">
     <div class="row">
         <h3>Tất cả sản phẩm</h3>
+
         @foreach($list_all_sanpham as $all_sp)
             <div class="col-sm-3">
-                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem; height: 30rem">
 
                     <a href="{{route('detail',$all_sp->slug)}}" style="text-decoration: none">
                         <img src="{{asset('uploads/sanpham/'.$all_sp->hinhanh)}}" class="card-img-top" alt="{{ $all_sp->name }}">
@@ -209,6 +211,7 @@
                 </div>
             </div>
         @endforeach
+
         <div class="d-flex">
             {!! $list_all_sanpham->links() !!}
         </div>

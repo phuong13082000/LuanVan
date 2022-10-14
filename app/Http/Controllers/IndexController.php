@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
 use App\Models\Sanpham_Theloai;
@@ -96,13 +97,28 @@ class IndexController extends Controller
         if ($data['keywords']) {
             $sanpham = SanPham::where('kichhoat', 0)->where('name', 'LIKE', '%' . $data['keywords'] . '%')->get();
 
-            $output = '<ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="display:block;">';
+            $output = '<ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="display:block;"><h5 style="text-align: center">Sản phẩm gợi ý:</h5><hr>';
 
             foreach ($sanpham as $sp) {
-                $output .= '<li class="li_search_ajax"><a class="dropdown-item" href="#"><b>' . $sp->name . '</b></a></li>';
+                $output .= '<li>
+                                <a class="dropdown-item" href="#">
+                                    <img width="90" src="uploads/sanpham/' . $sp->hinhanh . '" alt="' . $sp->name . '">
+                                    <b class="li_search_ajax">' . $sp->name . '</b>
+                                </a>
+                            </li>';
             }
             $output .= '</ul>';
             echo $output;
         }
+    }
+
+    public function profile($id)
+    {
+        $list_danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
+        $list_theloai = TheLoai::orderBy('id', 'DESC')->get();
+
+        $user = Customer::find($id)->first();
+
+        return view('pages.profile')->with(compact('list_danhmuc', 'list_theloai', 'user'));
     }
 }

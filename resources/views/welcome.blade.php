@@ -58,7 +58,7 @@
     <script type="text/javascript">
         $('#keywords').keyup(function() {
             var keywords = $(this).val();
-            if (keywords != '') {
+            if (keywords !== '') {
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
                     url: "{{ url('/timkiem-ajax') }}",

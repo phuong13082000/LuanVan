@@ -25,7 +25,6 @@
                             <tr>
                                 <th>Hình Ảnh</th>
                                 <th>Tên Sản Phẩm</th>
-                                <th>Đường dẫn</th>
                                 <th>Giá</th>
                                 <th>Giá Khuyến Mãi</th>
                                 <th>Số lượng</th>
@@ -43,7 +42,6 @@
                                              alt="{{$sanpham->name}}">
                                     </td>
                                     <td>{{$sanpham->name}}</td>
-                                    <td>{{$sanpham->slug}}</td>
                                     <td>{{ number_format($sanpham->gia, 0, '', ',')}} VND</td>
                                     <td>{{ number_format($sanpham->giakhuyenmai, 0, '', ',')}} VND</td>
                                     <td>{{$sanpham->soluong ?  : 'Hết hàng' }}</td>
@@ -61,11 +59,8 @@
                                     </td>
 
                                     <td>
-                                        <a href="{{route('sanpham.show',[$sanpham->id])}}" class="btn btn-success"><i
-                                                class="fa fa-eye"></i> View</a>
-
-                                        <a href="{{route('sanpham.edit',[$sanpham->id])}}" class="btn btn-primary"><i
-                                                class="fa fa-pencil-square-o"></i> Edit</a>
+                                        <a href="{{route('sanpham.show',[$sanpham->id])}}" class="btn btn-success"><i class="fa fa-eye"></i> View</a>
+                                        <a href="{{route('sanpham.edit',[$sanpham->id])}}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a>
 
                                         <form action="{{route('sanpham.destroy',[$sanpham->id])}}" method="POST">
                                             @method('DELETE')

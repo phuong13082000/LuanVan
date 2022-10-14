@@ -106,23 +106,10 @@
                             $total+=$subtotal;
                         @endphp
                         <tr class="color_qty_{{$details->product_id}}">
-
                             <td><i>{{$i}}</i></td>
-                            <td>{{$details->product_name}}</td>
+                            <td>{{$details->sanpham_name}}</td>
                             <td>{{$details->sanPham->soluong}}</td>
-                            <td>
-                                <input type="number" min="1" {{$order_status==2 ? 'disabled' : ''}} class="order_qty_{{$details->sanpham_id}}" value="{{$details->sanpham_soluong}}" name="product_sales_quantity">
-
-                                <input type="hidden" name="order_qty_storage" class="order_qty_storage_{{$details->sanpham_id}}" value="{{$details->sanPham->soluong}}">
-
-                                <input type="hidden" name="order_code" class="order_code" value="{{$details->order_code}}">
-
-                                <input type="hidden" name="order_product_id" class="order_product_id" value="{{$details->sanpham_id}}">
-
-                                @if($order_status!=2)
-                                    <button class="btn btn-primary update_quantity_order" data-product_id="{{$details->sanpham_id}}" name="update_quantity_order">Cập nhật</button>
-                                @endif
-                            </td>
+                            <td>{{$details->sanpham_soluong}}</td>
                             <td>{{number_format($details->sanpham_gia ,0,',','.')}}đ</td>
                             <td>{{number_format($subtotal ,0,',','.')}}đ</td>
                         </tr>
