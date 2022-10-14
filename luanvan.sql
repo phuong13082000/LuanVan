@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 11, 2022 at 07:21 PM
+-- Generation Time: Oct 11, 2022 at 08:49 PM
 -- Server version: 8.0.27
 -- PHP Version: 7.4.26
 
@@ -35,7 +35,14 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `customer_password` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `customer_phone` bigint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `customer_name`, `customer_email`, `customer_password`, `customer_phone`) VALUES
+(1, 'Phuong', 'hoangphuong0813@gmail.com', '9256f07cf3c731a53e71937461aa7950', 356929673);
 
 -- --------------------------------------------------------
 
@@ -126,14 +133,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   KEY `shipping_id` (`customer_id`),
   KEY `user_id` (`shipping_id`),
   KEY `code` (`code_order`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `customer_id`, `shipping_id`, `status`, `code_order`, `huybo`, `created_at`, `updated_at`) VALUES
-(11, 1, 11, '1', '5fd49', '0', '2022-10-11 18:44:59', '2022-10-11 18:44:59');
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -154,15 +154,7 @@ CREATE TABLE IF NOT EXISTS `order_details` (
   PRIMARY KEY (`id`),
   KEY `order_code` (`order_code`),
   KEY `sanpham_id` (`sanpham_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `order_details`
---
-
-INSERT INTO `order_details` (`id`, `order_code`, `sanpham_id`, `sanpham_name`, `sanpham_gia`, `sanpham_soluong`, `created_at`, `updated_at`) VALUES
-(3, '5fd49', 12, 'Adapter Sạc Type C MHJE3', 690000, '1', '2022-10-11 18:44:59', '2022-10-11 18:44:59'),
-(4, '5fd49', 1, 'Iphone 13 Pro Max', 20000000, '1', '2022-10-11 18:44:59', '2022-10-11 18:44:59');
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -295,14 +287,7 @@ CREATE TABLE IF NOT EXISTS `shippings` (
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `shippings`
---
-
-INSERT INTO `shippings` (`id`, `shipping_name`, `shipping_diachi`, `shipping_phone`, `shipping_email`, `shipping_notes`, `shipping_phuongthuc`, `created_at`, `updated_at`) VALUES
-(11, 'phuong', 'a2/47a', 123456789, 'hoangphuong0813@gmail.com', '1', '0', '2022-10-11 11:44:59', '2022-10-11 11:44:59');
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -365,6 +350,20 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`shipping_id`) REFERENCES `shippings` (`id`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
+
+--
+-- Constraints for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_code`) REFERENCES `orders` (`code_order`),
+  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`sanpham_id`) REFERENCES `sanphams` (`id`);
 
 --
 -- Constraints for table `sanphams`

@@ -12,6 +12,19 @@
 
 </head>
 <body>
+<style>
+    /*khuyenmai_trenphai_image*/
+    .khuyenmai {
+        background-color: red;
+        color: white;
+        position: absolute;
+        text-align: center;
+        width: 30%;
+        top: 8px;
+        right: 8px;
+    }
+
+</style>
 <div class="container">
 
     @yield('index')
@@ -20,9 +33,6 @@
     <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
     <script src="{{asset('frontend/js/jquery-ui.min.js')}}"></script>
     <script src="{{asset('frontend/js/owl-carousel.min.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"
-            integrity="sha512-7VTiy9AhpazBeKQAlhaLRUk+kAMAb8oczljuyJHPsVPWox/QIXDFOnT9DUk1UC8EbnHKRdQowT7sOBe7LAjajQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!--script-owl-carousel-->
     <script type="text/javascript">
@@ -44,36 +54,28 @@
         })
     </script>
 
-    <!--shipping-->
+    <!--search-->
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('.send_order').click(function () {
-                var shipping_email = $('.shipping_email').val();
-                var shipping_name = $('.shipping_name').val();
-                var shipping_address = $('.shipping_address').val();
-                var shipping_phone = $('.shipping_phone').val();
-                var shipping_notes = $('.shipping_notes').val();
-                var shipping_method = $('.payment_select').val();
+        $('#keywords').keyup(function() {
+            var keywords = $(this).val();
+            if (keywords != '') {
                 var _token = $('input[name="_token"]').val();
-
                 $.ajax({
-                    url: '{{url('/confirm-order')}}',
-                    method: 'POST',
-                    data: {
-                        shipping_email: shipping_email,
-                        shipping_name: shipping_name,
-                        shipping_address: shipping_address,
-                        shipping_phone: shipping_phone,
-                        shipping_notes: shipping_notes,
-                        shipping_method: shipping_method,
-                        _token: _token
-                    },
+                    url: "{{ url('/timkiem-ajax') }}",
+                    method: "POST",
+                    data: {keywords: keywords, _token: _token},
+                    success: function(data) {
+                        $('#search_ajax').fadeIn();
+                        $('#search_ajax').html(data);
+                    }
                 });
-                window.setTimeout(function () {
-                    location.reload();
-                    window.location.href = "{{url('/')}}";
-                }, 3000);
-            });
+            } else {
+                $('#search_ajax').fadeOut();
+            }
+        });
+        $(document).on('click', '.li_search_ajax', function() {
+            $('#keywords').val($(this).text());
+            $('#search_ajax').fadeOut();
         });
     </script>
 

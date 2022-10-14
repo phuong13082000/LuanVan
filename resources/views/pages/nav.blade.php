@@ -56,9 +56,11 @@
                 </ul>
 
                 <!--Search-->
-                <form class="d-flex mt-3">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <form autocomplete="off" class="d-flex mt-3 mb-3" action="{{ url('tim-kiem') }}" method="POST">
+                    @csrf
+                    <input class="form-control me-2" type="search" id="keywords" name="tukhoa" aria-label="Search">
+                    <div id="search_ajax"></div>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
     </nav>

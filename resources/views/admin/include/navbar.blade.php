@@ -18,7 +18,7 @@
             </div>
 
             <div class="mt-3">
-                <a class="nav-link" href="{{url('order')}}">Order</a>
+                <a class="nav-link" href="{{url('order')}}">Đơn Hàng</a>
             </div>
 
             <hr>

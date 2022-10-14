@@ -32,7 +32,6 @@
                             </p>
                             <p class="card-text">{!! $sanpham->cauhinh !!}</p>
 
-                            <a href="#" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
                             <a href="{{route('detail',$sanpham->slug)}}" class="btn btn-outline-primary">Detail</a>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 @section('index')
     @include('pages.nav')
     <div class="container">
-        <h4 class="mt-3">Danh Mục: {{ $tendanhmuc }}</h4>
+        <h4 class="mt-3">Tim kiếm: {{$tukhoa}}</h4>
         <div class="row mt-3">
             @foreach($chitiet_sanpham as $sanpham)
                 <div class="col-sm-3">

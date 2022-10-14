@@ -8,7 +8,6 @@ use App\Models\TheLoai;
 use Flasher\Prime\FlasherInterface;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {

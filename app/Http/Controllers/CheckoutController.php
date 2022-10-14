@@ -28,7 +28,7 @@ class CheckoutController extends Controller
     {
         $data = $request->all();
 
-//shipping
+        //shipping
         $shipping = new Shipping();
         $shipping->shipping_name = $data['shipping_name'];
         $shipping->shipping_email = $data['shipping_email'];
@@ -41,10 +41,10 @@ class CheckoutController extends Controller
 
         $shipping_id = $shipping->id;
         $checkout_code = substr(md5(microtime()), rand(0, 26), 5);
-//order
+
+        //order
         $order = new Order;
-        //$order->customer_id = Session::get('customer_id');
-        $order->customer_id = 1;
+        $order->customer_id = Session::get('customer_id');
         $order->shipping_id = $shipping_id;
         $order->status = 1;
         $order->code_order = $checkout_code;
@@ -55,7 +55,7 @@ class CheckoutController extends Controller
 
         $order->save();
 
-//order_details
+        //order_details
         $content = Cart::content();
         foreach ($content as $cart) {
             $order_details = new Order_Detail();
@@ -68,7 +68,7 @@ class CheckoutController extends Controller
             $order_details->save();
         }
         Cart::destroy();
-
+        return redirect('/');
     }
 
     public function dangnhap()
@@ -89,12 +89,13 @@ class CheckoutController extends Controller
     {
         $email = $request->email_account;
         $password = md5($request->password_account);
-        $result = Customer::where('customer_email', $email)
-            ->where('customer_password', $password)
-            ->first();
+        $result = Customer::where('customer_email', $email)->where('customer_password', $password)->first();
 
         if ($result) {
             Session::put('customer_id', $result->id);
+            Session::put('customer_email', $result->customer_email);
+            Session::put('customer_name', $result->customer_name);
+            Session::put('customer_phone', $result->customer_phone);
             return redirect('/');
         } else {
             return redirect('/dang-nhap');
@@ -113,6 +114,8 @@ class CheckoutController extends Controller
 
         Session::put('customer_id', $customer_id);
         Session::put('customer_name', $request->customer_name);
+        Session::put('customer_email', $request->customer_email);
+        Session::put('customer_phone', $request->customer_phone);
         return redirect('/');
 
     }

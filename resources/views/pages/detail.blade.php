@@ -56,7 +56,7 @@
                         {!! Form::hidden('productid_hidden', $sanpham->id) !!}
                     </span>
 
-                    <input type="submit" value="Thêm giỏ hàng" class="btn btn-primary add-to-cart"">
+                    <input type="submit" value="Thêm giỏ hàng" class="btn btn-primary add-to-cart">
 
                     <!--Cấu hình-->
                     <div class="row justify-content-center mt-3 mb-3">

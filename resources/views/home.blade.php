@@ -33,6 +33,7 @@
     </div>
 
     <div class="mt-3">
+        <h3>Số lượng sản phẩm</h3>
         <div class="row justify-content-center">
             <div class="table-responsive">
                 <table class="table table-striped" id="tablesanpham">

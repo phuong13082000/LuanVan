@@ -50,8 +50,7 @@
                             {!! Form::label('Hinhanh', 'Hình ảnh', []) !!}
                             {!! Form::file('hinhanh', ['class'=>'form-control']) !!}
                             @if(isset($sanpham))
-                                <img width="150" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}"
-                                     alt="{{$sanpham->name}}">
+                                <img width="150" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}" alt="{{$sanpham->name}}">
                             @endif
                         </div>
                     </div>

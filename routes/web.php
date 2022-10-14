@@ -28,10 +28,10 @@ Route::get('/logout-customer',[CheckoutController::class, 'logout_customer']);
 Route::post('/login-customer',[CheckoutController::class, 'login_customer']);
 Route::post('/add-customer',[CheckoutController::class, 'add_customer']);
 Route::get('/dang-nhap',[CheckoutController::class, 'dangnhap']);
-
 Route::get('/checkout',[CheckoutController::class, 'checkout']);
 Route::post('/confirm-order',[CheckoutController::class, 'confirm_order']);
-
+Route::post('/tim-kiem', [IndexController::class, 'timkiem']);
+Route::post('/timkiem-ajax', [IndexController::class, 'timkiem_ajax']);
 
 Auth::routes();
 
@@ -41,3 +41,5 @@ Route::resource('danhmuc', DanhMucController::class);
 Route::resource('theloai', TheLoaiController::class);
 Route::resource('sanpham', SanPhamController::class);
 Route::get('/order', [OrderController::class, 'view_order']);
+Route::get('/order-detail/{order_code}', [OrderController::class, 'view_order_detail']);
+Route::get('/delete-order/{order_code}', [OrderController::class, 'delete_order']);

@@ -25,8 +25,7 @@
                         @foreach($content as $v_content)
                             <tr>
                                 <td class="cart_product">
-                                    <img src="{{asset('uploads/sanpham/'.$v_content->options->image)}}" width="90"
-                                         alt="{{$v_content->name}}"/>
+                                    <img src="{{asset('uploads/sanpham/'.$v_content->options->image)}}" width="90" alt="{{$v_content->name}}"/>
                                 </td>
 
                                 <td class="cart_description">
@@ -41,13 +40,10 @@
                                     <div class="cart_quantity_button">
                                         {!! Form::open(['url'=>'/update-cart-quantity', 'method'=>'POST']) !!}
                                         <label>
-                                            <input name="cart_quantity" type="number" min="1"
-                                                   max="{{$v_content->weight}}" class="cart_quantity_input"
-                                                   value="{{$v_content->qty}}">
+                                            <input name="cart_quantity" type="number" min="1" max="{{$v_content->weight}}" class="cart_quantity_input" value="{{$v_content->qty}}">
                                         </label>
                                         {!! Form::submit('Cập nhật', ['class'=>'btn btn-success btn-sm']) !!}
-                                        <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart"
-                                               class="form-control">
+                                        <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" class="form-control">
                                         {!! Form::close() !!}
                                     </div>
                                 </td>
@@ -62,8 +58,7 @@
                                 </td>
 
                                 <td class="cart_delete">
-                                    <a class="cart_quantity_delete"
-                                       href="{{url('/delete-to-cart/'.$v_content->rowId)}}"><i class="fa fa-times"></i></a>
+                                    <a class="cart_quantity_delete" href="{{url('/delete-to-cart/'.$v_content->rowId)}}"><i class="fa fa-times"></i></a>
                                 </td>
 
                             </tr>
@@ -90,7 +85,6 @@
                                 @else
                                     <a class="btn btn-primary" href="{{url('/dang-nhap')}}">Đăng nhập</a>
                                     <a class="btn btn-primary" href="{{url('/')}}">Home</a>
-
                                 @endif
 
                             </div>

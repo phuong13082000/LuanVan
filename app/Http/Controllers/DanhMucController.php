@@ -25,6 +25,7 @@ class DanhMucController extends Controller
     public function store(DanhMucRequest $request, FlasherInterface $flasher)
     {
         $data = $request->all();
+
         $danhmuc = new DanhMuc();
         $danhmuc->name = $data['name'];
         $danhmuc->slug = $data['slug'];
