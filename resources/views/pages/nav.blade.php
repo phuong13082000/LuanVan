@@ -60,7 +60,7 @@
                 </ul>
 
                 {{--Search--}}
-                <form class="form-floating mb-3 mt-3 d-flex" action="{{ url('tim-kiem') }}" method="POST" autocomplete="off">
+                <form class="form-floating d-flex" action="{{ url('tim-kiem') }}" method="POST" autocomplete="off">
                     @csrf
                     <input class="form-control me-2" type="search" id="keywords" name="tukhoa" aria-label="Search" placeholder="Tìm kiếm theo tên">
                     <label for="keywords">Tìm kiếm theo tên</label>

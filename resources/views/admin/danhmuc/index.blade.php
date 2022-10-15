@@ -72,7 +72,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['route'=>'danhmuc.store', 'method'=>'POST']) !!}
+                    {!! Form::open(['route'=>'danhmuc.store', 'method'=>'POST', 'id'=>'form']) !!}
 
                     <div class="mb-3">
                         <div class="form-group">
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="modal-footer mb-3">
-                        {!! Form::submit('Thêm', ['class'=>'btn btn-success']) !!}
+                        {!! Form::submit('Thêm', ['class'=>'btn btn-success', 'id'=>'ajaxSubmit']) !!}
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
 

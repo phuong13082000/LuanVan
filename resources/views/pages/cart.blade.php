@@ -5,6 +5,7 @@
     @php
         $content = Cart::content();
         $count = Cart::count();
+        $customer_id = Session::get('id');
     @endphp
     @if($count != 0)
         <div class="container">
@@ -39,11 +40,11 @@
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
                                         {!! Form::open(['url'=>'/update-cart-quantity', 'method'=>'POST']) !!}
-                                        <label>
-                                            <input name="cart_quantity" type="number" min="1" max="{{$v_content->weight}}" class="cart_quantity_input" value="{{$v_content->qty}}">
-                                        </label>
-                                        {!! Form::submit('Cập nhật', ['class'=>'btn btn-success btn-sm']) !!}
-                                        <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" class="form-control">
+                                            <label>
+                                                <input name="cart_quantity" type="number" min="1" max="{{$v_content->weight}}" class="cart_quantity_input" value="{{$v_content->qty}}">
+                                            </label>
+                                            {!! Form::submit('Cập nhật', ['class'=>'btn btn-success btn-sm']) !!}
+                                            <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" class="form-control">
                                         {!! Form::close() !!}
                                     </div>
                                 </td>
@@ -76,9 +77,6 @@
                                 <ul>
                                     <li>Thành tiền <span>{{Cart::total().' '.'vnđ + Phí ship: 50,000 vnđ'}}</span></li>
                                 </ul>
-                                @php
-                                    $customer_id = Session::get('id');
-                                @endphp
                                 @if($customer_id!=NULL)
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCheckout">Thanh toán</button>
                                     <a class="btn btn-success" href="{{url('/')}}">Home</a>

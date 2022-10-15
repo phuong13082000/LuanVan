@@ -19,7 +19,28 @@
                 <div class="col-sm-6">
                     <img class="img-fluid" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}" alt="{{$sanpham->name}}">
                     <hr>
-                    {!! $sanpham->noidung !!}
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalThongtin">
+                        Thông tin sản phẩm
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalThongtin" tabindex="-1" aria-labelledby="modalThongtinLable" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalThongtinLable">Thông tin sản phẩm</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {!! $sanpham->noidung !!}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-sm-6">

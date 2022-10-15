@@ -40,10 +40,15 @@ Auth::routes();
 
 //Admin
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::resource('danhmuc', DanhMucController::class);
 Route::resource('theloai', TheLoaiController::class);
+
 Route::resource('sanpham', SanPhamController::class);
+Route::post('/update-soluong', [SanPhamController::class, 'update_soluong']);
+Route::post('/update-giakhuyenmai', [SanPhamController::class, 'update_giakhuyenmai']);
 
 Route::get('/order', [OrderController::class, 'view_order']);
+Route::get('/print-order/{checkout_code}', [OrderController::class, 'print_order']);
 Route::get('/order-detail/{order_code}', [OrderController::class, 'view_order_detail']);
 Route::get('/delete-order/{order_code}', [OrderController::class, 'delete_order']);

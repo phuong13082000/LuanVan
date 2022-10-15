@@ -9,7 +9,6 @@ use Flasher\Prime\FlasherInterface;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
-session_start();
 
 class CartController extends Controller
 {

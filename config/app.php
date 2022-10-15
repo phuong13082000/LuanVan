@@ -198,6 +198,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Flasher\Laravel\FlasherServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*

@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Cart;
 use Illuminate\Support\Facades\Session;
 
-session_start();
 
 class CheckoutController extends Controller
 {

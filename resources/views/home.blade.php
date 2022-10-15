@@ -32,32 +32,5 @@
 
     </div>
 
-    <div class="mt-3">
-        <h3>Số lượng sản phẩm</h3>
-        <div class="row justify-content-center">
-            <div class="table-responsive">
-                <table class="table table-striped" id="tablesanpham">
-                    <thead>
-                    <tr>
-                        <th>Hình Ảnh</th>
-                        <th>Tên Sản Phẩm</th>
-                        <th>Số lượng</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($soluong_chitiet_sanpham as $sanpham )
-                        <tr>
-                            <td>
-                                <img width="100px" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}" alt="{{$sanpham->name}}">
-                            </td>
-                            <td>{{$sanpham->name}}</td>
-                            <td>{{$sanpham->soluong ?  : 'Hết hàng' }}</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 
 @endsection

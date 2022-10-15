@@ -7,14 +7,14 @@ use App\Models\DanhMuc;
 use App\Models\SanPham;
 use App\Models\TheLoai;
 use Flasher\Prime\FlasherInterface;
+use Illuminate\Http\Request;
 
-session_start();
 
 class SanPhamController extends Controller
 {
     public function index()
     {
-        $list_sanpham = SanPham::with('danhMuc', 'ntheLoai')->orderBy('id', 'DESC')->get();
+        $list_sanpham = SanPham::with('danhMuc', 'ntheLoai')->get();
 
         return view('admin.sanpham.index', compact('list_sanpham'));
     }
@@ -137,6 +137,30 @@ class SanPhamController extends Controller
         $sanpham->ntheLoai()->where('sanpham_id', $id)->detach();
 
         $flasher->addSuccess('Xóa sản phẩm thành công!');
+        return redirect()->route('sanpham.index');
+    }
+
+    public function update_soluong(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['id_sanpham'];
+
+        $sanpham = SanPham::find($id);
+        $sanpham->soluong = $data['soluong'];
+        $sanpham->save();
+
+        return redirect()->route('sanpham.index');
+    }
+
+    public function update_giakhuyenmai(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['id_sanpham'];
+
+        $sanpham = SanPham::find($id);
+        $sanpham->giakhuyenmai = $data['giakhuyenmai'];
+        $sanpham->save();
+
         return redirect()->route('sanpham.index');
     }
 }

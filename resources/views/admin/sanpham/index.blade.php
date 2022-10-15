@@ -38,14 +38,21 @@
                             @foreach ($list_sanpham as $key => $sanpham )
                                 <tr>
                                     <td>
-                                        <img width="100px" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}"
-                                             alt="{{$sanpham->name}}">
+                                        <img width="100px" src="{{asset('uploads/sanpham/'.$sanpham->hinhanh)}}" alt="{{$sanpham->name}}">
                                     </td>
                                     <td>{{$sanpham->name}}</td>
                                     <td>{{ number_format($sanpham->gia, 0, '', ',')}} VND</td>
-                                    <td>{{ number_format($sanpham->giakhuyenmai, 0, '', ',')}} VND</td>
-                                    <td>{{$sanpham->soluong ?  : 'Hết hàng' }}</td>
-                                    <td><span class="badge bg-primary">{{$sanpham->danhMuc->name}}</span</td>
+                                    <td>
+                                        {!! Form::open(['method'=>'POST']) !!}
+                                            {!! Form::number('giakhuyenmai', isset($sanpham) ? $sanpham->giakhuyenmai : '', ['class'=>'form-control change-giakhuyenmai', 'id'=>$sanpham->id]) !!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                    <td>
+                                        {!! Form::open(['method'=>'POST']) !!}
+                                            {!! Form::number('soluong', isset($sanpham) ? $sanpham->soluong : '', ['class'=>'form-control change-number', 'id'=>$sanpham->id]) !!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                    <td><span class="badge bg-primary">{{$sanpham->danhMuc->name}}</span></td>
                                     <td>
                                         @foreach ($sanpham->ntheLoai as $theloai )
                                             <span class="badge bg-dark">{{$theloai->name}}</span><br>
