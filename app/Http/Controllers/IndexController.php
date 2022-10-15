@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
 use App\Models\Sanpham_Theloai;
@@ -30,7 +29,7 @@ class IndexController extends Controller
         }
         $list_phukien = SanPham::whereIn('id', $ntheLoai)->take(4)->get();
 
-        return view('pages.index')->with(compact('list_danhmuc', 'list_theloai', 'list_sanpham_moi', 'list_sanpham_khuyenmai', 'list_phukien', 'list_all_sanpham'));
+        return view('pages.index')->with(compact( 'list_danhmuc', 'list_theloai', 'list_sanpham_moi', 'list_sanpham_khuyenmai', 'list_phukien', 'list_all_sanpham'));
     }
 
     public function detail($slug)
@@ -117,8 +116,6 @@ class IndexController extends Controller
         $list_danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
         $list_theloai = TheLoai::orderBy('id', 'DESC')->get();
 
-        $user = Customer::find($id)->first();
-
-        return view('pages.profile')->with(compact('list_danhmuc', 'list_theloai', 'user'));
+        return view('pages.profile')->with(compact('list_danhmuc', 'list_theloai'));
     }
 }

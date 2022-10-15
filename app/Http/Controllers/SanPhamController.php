@@ -8,6 +8,8 @@ use App\Models\SanPham;
 use App\Models\TheLoai;
 use Flasher\Prime\FlasherInterface;
 
+session_start();
+
 class SanPhamController extends Controller
 {
     public function index()

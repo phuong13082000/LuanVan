@@ -77,7 +77,7 @@
                                     <li>Thành tiền <span>{{Cart::total().' '.'vnđ + Phí ship: 50,000 vnđ'}}</span></li>
                                 </ul>
                                 @php
-                                    $customer_id = Session::get('customer_id');
+                                    $customer_id = Session::get('id');
                                 @endphp
                                 @if($customer_id!=NULL)
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCheckout">Thanh toán</button>

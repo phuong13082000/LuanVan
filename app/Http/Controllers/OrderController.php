@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Order_Detail;
 use App\Models\Shipping;
+use App\Models\User;
 
 session_start();
 
@@ -21,13 +21,14 @@ class OrderController extends Controller
     public function view_order_detail($order_code)
     {
         $order_details = Order_Detail::with('sanPham')->where('order_code', $order_code)->get();
+
         $orders = Order::where('code_order', $order_code)->get();
         foreach ($orders as $order) {
-            $customer_id = $order->customer_id;
+            $user_id = $order->user_id;
             $shipping_id = $order->shipping_id;
             $order_status = $order->status;
         }
-        $customer = Customer::where('id', $customer_id)->first();
+        $customer = User::where('id', $user_id)->first();
         $shipping = Shipping::where('id', $shipping_id)->first();
 
         return view('admin.order.orderDetail')->with(compact('order_details', 'customer', 'shipping', 'order_details', 'orders', 'order_status'));

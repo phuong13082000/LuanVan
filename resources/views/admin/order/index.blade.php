@@ -29,7 +29,7 @@
                             <tbody class="order_position">
                             @foreach ($list_order as $order )
                                 <tr>
-                                    <td>{{$order->customer->customer_name}}</td>
+                                    <td>{{$order->customer->name}}</td>
                                     <td>{{$order->shipping->shipping_name}}</td>
                                     <td>
                                         @if($order->status==1)

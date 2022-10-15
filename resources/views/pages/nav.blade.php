@@ -36,24 +36,27 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{url('/show-cart')}}"><i class="fa fa-shopping-cart" style="color: red">{{Cart::count()}}</i> Giỏ Hàng</a>
                     </li>
-
                     @php
-                        $customer_id = Session::get('customer_id');
+                        $id = Session::get('id');
+                        $name = Session::get('name');
                     @endphp
-                    @if(!$customer_id)
+                    @if (!$id)
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{url('/dang-nhap')}}"><i class="fa fa-user"></i> Đăng Nhập</a>
+                            <a class="nav-link" href="{{ url('dang-nhap') }}">{{ __('Đăng nhập') }}</a>
                         </li>
                     @else
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i> {{Session::get('customer_name')}}</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{url('/profile/'.$customer_id)}}"> Profile</a></li>
-                                <li><a class="dropdown-item" href="{{url('/logout-customer')}}"> Logout</a></li>
-                            </ul>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Session::get('name') }}</a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('profile/'.$id) }}" >{{ __('Profile') }}</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
                         </li>
                     @endif
-
                 </ul>
 
                 {{--Search--}}

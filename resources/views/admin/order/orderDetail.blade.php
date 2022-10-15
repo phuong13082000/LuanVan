@@ -24,9 +24,9 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{{$customer->customer_name}}</td>
-                        <td>{{$customer->customer_phone}}</td>
-                        <td>{{$customer->customer_email}}</td>
+                        <td>{{$customer->name}}</td>
+                        <td>{{$customer->phone}}</td>
+                        <td>{{$customer->email}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -59,7 +59,13 @@
                         <td>{{$shipping->shipping_phone}}</td>
                         <td>{{$shipping->shipping_email}}</td>
                         <td>{{$shipping->shipping_notes}}</td>
-                        <td>@if($shipping->shipping_phuongthuc==0) Chuyển khoản @else Tiền mặt @endif</td>
+                        <td>
+                            @if($shipping->shipping_phuongthuc==0)
+                                Chuyển khoản
+                            @else
+                                Tiền mặt
+                            @endif
+                        </td>
                     </tr>
                     </tbody>
                 </table>

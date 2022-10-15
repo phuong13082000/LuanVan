@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\User;
 use App\Models\DanhMuc;
 use App\Models\TheLoai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+
+session_start();
 
 class CustomerController extends Controller
 {
@@ -18,24 +22,21 @@ class CustomerController extends Controller
         return view('pages.login')->with(compact('list_danhmuc', 'list_theloai'));
     }
 
-    public function logout_customer()
-    {
-        Session::forget('customer_id');
-        return redirect('/');
-    }
-
     public function login_customer(Request $request)
     {
         $email = $request->email_account;
-        $password = md5($request->password_account);
-        $result = Customer::where('customer_email', $email)->where('customer_password', $password)->first();
+        $user = User::where('email', $email)->first();
 
-        if ($result) {
-            Session::put('customer_id', $result->id);
-            Session::put('customer_email', $result->customer_email);
-            Session::put('customer_name', $result->customer_name);
-            Session::put('customer_phone', $result->customer_phone);
-            return redirect('/');
+        $check_password = Hash::check($request->password_account, $user->password);
+
+        if ($user && $check_password) {
+            Session::put('id', $user->id);
+            Session::put('name', $user->name);
+            Session::put('email', $user->email);
+            Session::put('address', $user->address);
+            Session::put('phone', $user->phone);
+
+            return redirect('/show-cart');
         } else {
             return redirect('/');
         }
@@ -43,19 +44,59 @@ class CustomerController extends Controller
 
     public function add_customer(Request $request)
     {
-        $data = array();
-        $data['customer_name'] = $request->customer_name;
-        $data['customer_phone'] = $request->customer_phone;
-        $data['customer_email'] = $request->customer_email;
-        $data['customer_password'] = md5($request->customer_password);
+        $data = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255'],
+        ]);
 
-        $customer_id = Customer::insertGetId($data);
+        User::create([
+            'name' => $data['customer_name'],
+            'phone' => $data['customer_phone'],
+            'address' => $data['customer_address'],
+            'email' => $data['customer_email'],
+            'password' => Hash::make($data['customer_password']),
+        ]);
 
-        Session::put('customer_id', $customer_id);
-        Session::put('customer_name', $request->customer_name);
-        Session::put('customer_email', $request->customer_email);
-        Session::put('customer_phone', $request->customer_phone);
+        $user = User::where('email', $data['customer_email'])->first();
+
+        Session::put('id', $user->id);
+        Session::put('name', $user->name);
+        Session::put('email', $user->email);
+        Session::put('address', $user->address);
+        Session::put('phone', $user->phone);
         return redirect()->back();
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $validated = Validator::make($request->all(), [
+            'id' => ['required'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+        ]);
+
+        if ($validated->fails()) {
+            return response()->json(['code' => 400, 'msg' => $validated->errors()->first()]);
+        }
+
+        $user = User::find($request['id']);
+
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->phone = $request['phone'];
+        $user->address = $request['address'];
+        $user->save();
+
+        Session::put('id', $user->id);
+        Session::put('name', $user->name);
+        Session::put('email', $user->email);
+        Session::put('address', $user->address);
+        Session::put('phone', $user->phone);
+        return response()->json(['code' => 200, 'msg' => 'profile updated successfully.']);
 
     }
 }

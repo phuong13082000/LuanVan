@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
 use App\Models\TheLoai;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -24,4 +26,5 @@ class HomeController extends Controller
 
         return view('home')->with(compact('count_danhmuc', 'count_theloai', 'count_sanpham', 'soluong_chitiet_sanpham'));
     }
+
 }

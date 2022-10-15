@@ -56,7 +56,7 @@
 
     <!--search-->
     <script type="text/javascript">
-        $('#keywords').keyup(function() {
+        $('#keywords').keyup(function () {
             var keywords = $(this).val();
             if (keywords !== '') {
                 var _token = $('input[name="_token"]').val();
@@ -64,7 +64,7 @@
                     url: "{{ url('/timkiem-ajax') }}",
                     method: "POST",
                     data: {keywords: keywords, _token: _token},
-                    success: function(data) {
+                    success: function (data) {
                         $('#search_ajax').fadeIn();
                         $('#search_ajax').html(data);
                     }
@@ -73,9 +73,47 @@
                 $('#search_ajax').fadeOut();
             }
         });
-        $(document).on('click', '.li_search_ajax', function() {
+        $(document).on('click', '.li_search_ajax', function () {
             $('#keywords').val($(this).text());
             $('#search_ajax').fadeOut();
+        });
+    </script>
+
+    <!--updateprofile-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#profile_setup_frm").submit(function (e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $("#btn").attr("disabled", true);
+                $("#btn").html("Updating...");
+                $.ajax({
+                    type: "POST",
+                    url: this.action,
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: (response) => {
+                        if (response.code == 400) {
+                            let error = '<span class="alert alert-danger">' + response.msg + '</span>';
+                            $("#res").html(error);
+                            $("#btn").attr("disabled", false);
+                            $("#btn").html("Save Profile");
+                        } else if (response.code == 200) {
+                            let success = '<span class="alert alert-success">' + response.msg + '</span>';
+                            $("#res").html(success);
+                            $("#btn").attr("disabled", false);
+                            $("#btn").html("Save Profile");
+                        }
+                    }
+                });
+            });
         });
     </script>
 

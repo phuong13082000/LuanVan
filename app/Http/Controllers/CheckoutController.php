@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
-use App\Models\DanhMuc;
 use App\Models\Order;
 use App\Models\Order_Detail;
 use App\Models\Shipping;
-use App\Models\TheLoai;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Cart;
+use Illuminate\Support\Facades\Session;
 
 session_start();
 
@@ -36,7 +33,7 @@ class CheckoutController extends Controller
 
         //order
         $order = new Order;
-        $order->customer_id = Session::get('customer_id');
+        $order->user_id = Session::get('id');
         $order->shipping_id = $shipping_id;
         $order->status = 1;
         $order->code_order = $checkout_code;
