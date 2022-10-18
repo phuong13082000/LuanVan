@@ -215,10 +215,11 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'Flasher' => Flasher\Laravel\Facade\Flasher::class,
     ])->toArray(),
 
-    'Form' => Collective\Html\FormFacade::class,
-    'Html' => Collective\Html\HtmlFacade::class,
-    'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
-    'Flasher' => Flasher\Laravel\Facade\Flasher::class,
+
 ];

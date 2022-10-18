@@ -101,7 +101,7 @@ class IndexController extends Controller
             foreach ($sanpham as $sp) {
                 $output .= '<li>
                                 <a class="dropdown-item" href="#">
-                                    <img width="90" src="uploads/sanpham/' . $sp->hinhanh . '" alt="' . $sp->name . '">
+                                    <img width="90" src="../uploads/sanpham/' . $sp->hinhanh . '" alt="' . $sp->name . '">
                                     <b class="li_search_ajax">' . $sp->name . '</b>
                                 </a>
                             </li>';
